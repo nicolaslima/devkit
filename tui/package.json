@@ -1,0 +1,28 @@
+{
+  "name": "devkit",
+  "module": "src/index.tsx",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --watch src/index.tsx",
+    "start": "bun run src/index.tsx",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check:code": "biome check .",
+    "check:code:write": "biome check --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.5",
+    "@types/bun": "latest",
+    "typescript": "^5.9.2",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "@opentui/core": "^0.1.84",
+    "@opentui/react": "^0.1.84",
+    "react": "^19.2.4",
+    "zod": "^4.3.6"
+  }
+}
