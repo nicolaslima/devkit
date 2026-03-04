@@ -15,7 +15,7 @@ export const DIRECTIONAL_KEYMAP = {
   right: ["right", "l"],
 } as const;
 
-export const CONFIRM_KEYS = ["enter", "return"] as const;
+export const CONFIRM_KEYS = ["enter", "return", "kpenter", "numpadenter"] as const;
 
 export function isDirectionalKey(
   keyName: string,
@@ -34,4 +34,14 @@ export function resolveTabShortcut(keyName: string, tabs: readonly AppTab[]): Ap
     return null;
   }
   return tabs[index] ?? null;
+}
+
+export function isConfirmKey(keyName: string, sequence?: string, code?: string): boolean {
+  if ((CONFIRM_KEYS as readonly string[]).includes(keyName)) {
+    return true;
+  }
+  if (sequence === "\r" || sequence === "\n") {
+    return true;
+  }
+  return typeof code === "string" && /enter/i.test(code);
 }

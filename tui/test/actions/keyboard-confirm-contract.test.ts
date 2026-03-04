@@ -8,7 +8,7 @@ describe("keyboard confirm contract", () => {
     const content = await readFile(keyboardPath, "utf8");
 
     expect(content).toContain("if (confirmAction) {");
-    expect(content).toContain("(CONFIRM_KEYS as readonly string[]).includes(key.name)");
+    expect(content).toContain("isConfirmKey(key.name, key.sequence, key.code)");
     expect(content).not.toContain('if (key.name === "enter") {');
   });
 });

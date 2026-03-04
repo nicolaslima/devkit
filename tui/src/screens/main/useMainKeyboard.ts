@@ -1,7 +1,7 @@
 import { useKeyboard } from "@opentui/react";
 import {
-  CONFIRM_KEYS,
   GLOBAL_KEYMAP,
+  isConfirmKey,
   isDirectionalKey,
   isHelpToggleKey,
   resolveTabShortcut,
@@ -104,7 +104,7 @@ export function useMainKeyboard({
         key.preventDefault();
         return;
       }
-      if ((CONFIRM_KEYS as readonly string[]).includes(key.name)) {
+      if (isConfirmKey(key.name, key.sequence, key.code)) {
         key.preventDefault();
         if (!confirmFocusConfirm) {
           setConfirmAction(null);
@@ -279,7 +279,7 @@ export function useMainKeyboard({
       return;
     }
 
-    if ((CONFIRM_KEYS as readonly string[]).includes(key.name)) {
+    if (isConfirmKey(key.name, key.sequence, key.code)) {
       key.preventDefault();
       void activatePrimaryAction();
     }
