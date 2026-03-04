@@ -29,6 +29,8 @@ interface MainKeyboardDeps {
   toggleCurrentSkillSelection: () => void;
   installSelectedSkillsAction: () => Promise<void>;
   removeSelectedSkillsAction: () => Promise<void>;
+  installCurrentSkillAction: () => Promise<void>;
+  removeCurrentSkillAction: () => Promise<void>;
   toggleCurrentToolSelection: () => void;
   executeSelectedToolAction: (
     mode: "install" | "update" | "configure" | "uninstall",
@@ -60,6 +62,8 @@ export function useMainKeyboard({
   toggleCurrentSkillSelection,
   installSelectedSkillsAction,
   removeSelectedSkillsAction,
+  installCurrentSkillAction,
+  removeCurrentSkillAction,
   toggleCurrentToolSelection,
   executeSelectedToolAction,
   toggleCurrentMcpAction,
@@ -175,6 +179,18 @@ export function useMainKeyboard({
       key.preventDefault();
       clearLightConfirm();
       toggleCurrentSkillSelection();
+      return;
+    }
+
+    if (key.name === "i" && key.shift && activeTab === "skills") {
+      key.preventDefault();
+      void installCurrentSkillAction();
+      return;
+    }
+
+    if (key.name === "d" && key.shift && activeTab === "skills") {
+      key.preventDefault();
+      void removeCurrentSkillAction();
       return;
     }
 

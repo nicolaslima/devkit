@@ -24,6 +24,15 @@ export async function pathExists(targetPath: string): Promise<boolean> {
   }
 }
 
+export async function pathEntryExists(targetPath: string): Promise<boolean> {
+  try {
+    await fs.lstat(targetPath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export async function readTextFile(targetPath: string): Promise<string> {
   return fs.readFile(targetPath, "utf8");
 }
@@ -41,9 +50,6 @@ export async function appendTextFile(targetPath: string, content: string): Promi
 }
 
 export async function removePath(targetPath: string): Promise<void> {
-  if (!(await pathExists(targetPath))) {
-    return;
-  }
   await fs.rm(targetPath, { recursive: true, force: true });
 }
 

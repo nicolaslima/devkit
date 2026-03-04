@@ -37,17 +37,13 @@ describe("skills actions", () => {
   });
 
   it("removeInstalledSkills runs best-effort and still reports 0/0", async () => {
-    const existsSpy = vi.spyOn(fsAdapter, "pathExists").mockResolvedValue(true);
     const removeSpy = vi.spyOn(fsAdapter, "removePath");
-    removeSpy
-      .mockResolvedValueOnce(undefined)
-      .mockRejectedValueOnce(new Error("nope"))
-      .mockResolvedValue(undefined);
+    removeSpy.mockRejectedValueOnce(new Error("nope"));
 
     const logs: string[] = [];
     const result = await removeInstalledSkills(["a"], (line) => logs.push(line));
 
-    expect(existsSpy).toHaveBeenCalled();
+    expect(removeSpy).toHaveBeenCalled();
     expect(result.failed).toBe(1);
     expect(result.total).toBe(1);
     expect(result.token).toBe("1/1");

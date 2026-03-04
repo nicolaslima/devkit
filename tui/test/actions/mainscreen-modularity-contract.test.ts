@@ -25,6 +25,15 @@ describe("MainScreen modularity contract", () => {
     expect(content).not.toContain("useKeyboard((key) => {");
   });
 
+  it("guards bootstrap refresh to run only once on mount", async () => {
+    const mainScreenPath = path.resolve(process.cwd(), "src/screens/MainScreen.tsx");
+    const content = await readFile(mainScreenPath, "utf8");
+
+    expect(content).toContain("const bootstrappedRef = useRef(false);");
+    expect(content).toContain("if (bootstrappedRef.current) {");
+    expect(content).toContain('void runTask("bootstrap", actions.refreshCatalog);');
+  });
+
   it("delegates workspace and inspector builders to module slices", async () => {
     const viewModelPath = path.resolve(process.cwd(), "src/screens/main/useMainViewModel.ts");
     const content = await readFile(viewModelPath, "utf8");

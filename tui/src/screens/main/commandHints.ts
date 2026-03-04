@@ -4,7 +4,7 @@ function buildCommandHint(activeTab: AppTab): string {
   const common = "[Tab] trocar aba  [↑↓/j/k] navegar  [Enter] acao  [q] sair";
   switch (activeTab) {
     case "skills":
-      return `${common}  [Space] selecionar  [i] instalar  [r] remover`;
+      return `${common}  [Space] selecionar  [i/r] batch  [Shift+I/Shift+D] skill atual`;
     case "tools":
       return `${common}  [Space] selecionar  [i/u/x/c] tools`;
     case "mcp":

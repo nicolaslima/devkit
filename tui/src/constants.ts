@@ -61,10 +61,18 @@ export const REFERENCE_CONFIG_CANDIDATES = [
   path.resolve(cwd, "config.toml"),
 ];
 
-export const SKILL_INSTALL_DIRS = [
-  path.join(home, ".codex", "skills"),
-  path.join(home, ".agents", "skills"),
+const SKILL_DIR_SUFFIXES = [
+  path.join(".codex", "skills"),
+  path.join(".agents", "skills"),
+  path.join(".claude", "skills"),
+  path.join(".continue", "skills"),
+  path.join(".copilot", "skills"),
 ];
+
+export const SKILL_INSTALL_DIRS = uniqueCandidates([
+  ...SKILL_DIR_SUFFIXES.map((suffix) => path.join(home, suffix)),
+  ...SKILL_DIR_SUFFIXES.map((suffix) => path.join(projectRoot, suffix)),
+]);
 
 export const CWD_SCOPE = path.resolve(cwd);
 export const HOME_SCOPE = path.resolve(home || cwd);

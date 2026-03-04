@@ -33,8 +33,10 @@ export function buildSkillsInspectorLines(
       lines: [
         current.command,
         "Space/Enter toggle selection",
-        "i install selected",
-        "r remove selected local",
+        "i install selected batch",
+        "r remove selected batch",
+        "Shift+I install current skill",
+        "Shift+D remove current skill",
       ],
     },
     {

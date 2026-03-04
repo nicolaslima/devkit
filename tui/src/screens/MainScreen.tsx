@@ -1,6 +1,6 @@
 import { TextAttributes } from "@opentui/core";
 import { useRenderer, useTerminalDimensions } from "@opentui/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { DistTags } from "../actions/codex";
 import { CommandBar } from "../components/CommandBar";
 import { ConfirmModal } from "../components/ConfirmModal";
@@ -36,6 +36,7 @@ import { useMainViewModel } from "./main/useMainViewModel";
 export function MainScreen() {
   const renderer = useRenderer();
   const { width, height } = useTerminalDimensions();
+  const bootstrappedRef = useRef(false);
 
   const [activeTab, setActiveTab] = useState<AppTab>("home");
   const [busy, setBusy] = useState(false);
@@ -175,6 +176,10 @@ export function MainScreen() {
   });
 
   useEffect(() => {
+    if (bootstrappedRef.current) {
+      return;
+    }
+    bootstrappedRef.current = true;
     void runTask("bootstrap", actions.refreshCatalog);
   }, [actions.refreshCatalog, runTask]);
 
@@ -213,6 +218,8 @@ export function MainScreen() {
     toggleCurrentSkillSelection: actions.toggleCurrentSkillSelection,
     installSelectedSkillsAction: actions.installSelectedSkillsAction,
     removeSelectedSkillsAction: actions.removeSelectedSkillsAction,
+    installCurrentSkillAction: actions.installCurrentSkillAction,
+    removeCurrentSkillAction: actions.removeCurrentSkillAction,
     toggleCurrentToolSelection: actions.toggleCurrentToolSelection,
     executeSelectedToolAction: actions.executeSelectedToolAction,
     toggleCurrentMcpAction: actions.toggleCurrentMcpAction,

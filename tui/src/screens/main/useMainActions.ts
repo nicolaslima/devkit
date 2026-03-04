@@ -4,7 +4,9 @@ import { applyCurrentConfigDiffCommand } from "../../modules/config-sync/command
 import { toggleCurrentMcpCommand } from "../../modules/mcp/commands";
 import type { ModuleRuntimeContext } from "../../modules/runtime/types";
 import {
+  installCurrentSkillCommand,
   installSelectedSkillsCommand,
+  queueRemoveCurrentSkillCommand,
   queueRemoveSelectedSkillsCommand,
 } from "../../modules/skills/commands";
 import { executeSelectedToolsCommand } from "../../modules/tools/commands";
@@ -72,7 +74,9 @@ interface UseMainActionsState {
   toggleCurrentSkillSelection: () => void;
   toggleCurrentToolSelection: () => void;
   installSelectedSkillsAction: () => Promise<void>;
+  installCurrentSkillAction: () => Promise<void>;
   removeSelectedSkillsAction: () => Promise<void>;
+  removeCurrentSkillAction: () => Promise<void>;
   updateCodexAction: (target: CodexTarget | null, channel: CodexChannel) => Promise<void>;
   toggleCurrentMcpAction: () => Promise<void>;
   applyCurrentDiffAction: () => Promise<void>;
@@ -139,6 +143,16 @@ export function useMainActions(deps: UseMainActionsDeps): UseMainActionsState {
     });
   }, [deps.selectedSkills, deps.skills, deps.skillsModuleError, refreshSkills, runtime]);
 
+  const installCurrentSkillAction = useCallback(async () => {
+    await installCurrentSkillCommand({
+      ...runtime,
+      skills: deps.skills,
+      skillsModuleError: deps.skillsModuleError,
+      currentIndex: deps.getCursor("skills"),
+      refreshSkills,
+    });
+  }, [deps.getCursor, deps.skills, deps.skillsModuleError, refreshSkills, runtime]);
+
   const removeSelectedSkillsAction = useCallback(async () => {
     queueRemoveSelectedSkillsCommand({
       ...runtime,
@@ -151,6 +165,26 @@ export function useMainActions(deps: UseMainActionsDeps): UseMainActionsState {
     });
   }, [
     deps.selectedSkills,
+    deps.setConfirmAction,
+    deps.setConfirmFocusConfirm,
+    deps.skills,
+    deps.skillsModuleError,
+    refreshSkills,
+    runtime,
+  ]);
+
+  const removeCurrentSkillAction = useCallback(async () => {
+    queueRemoveCurrentSkillCommand({
+      ...runtime,
+      skills: deps.skills,
+      skillsModuleError: deps.skillsModuleError,
+      currentIndex: deps.getCursor("skills"),
+      refreshSkills,
+      setConfirmAction: deps.setConfirmAction,
+      setConfirmFocusConfirm: deps.setConfirmFocusConfirm,
+    });
+  }, [
+    deps.getCursor,
     deps.setConfirmAction,
     deps.setConfirmFocusConfirm,
     deps.skills,
@@ -253,7 +287,9 @@ export function useMainActions(deps: UseMainActionsDeps): UseMainActionsState {
       refreshTools,
       refreshCodex,
       installSelectedSkillsAction,
+      installCurrentSkillAction,
       removeSelectedSkillsAction,
+      removeCurrentSkillAction,
       toggleCurrentSkillSelection,
       toggleCurrentToolSelection,
       toggleCurrentMcpAction,
@@ -274,7 +310,9 @@ export function useMainActions(deps: UseMainActionsDeps): UseMainActionsState {
     toggleCurrentSkillSelection,
     toggleCurrentToolSelection,
     installSelectedSkillsAction,
+    installCurrentSkillAction,
     removeSelectedSkillsAction,
+    removeCurrentSkillAction,
     updateCodexAction,
     toggleCurrentMcpAction,
     applyCurrentDiffAction,

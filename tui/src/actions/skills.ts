@@ -1,6 +1,6 @@
 import path from "node:path";
 import { loadSkillsCatalogState } from "../adapters/catalog";
-import { pathExists, removePath } from "../adapters/fs";
+import { pathEntryExists, removePath } from "../adapters/fs";
 import { runCommand } from "../adapters/shell";
 import { SKILL_INSTALL_DIRS } from "../constants";
 import type { BatchSummary, ModuleCatalogState, SkillCatalogItem, SkillRecipe } from "../types";
@@ -15,7 +15,7 @@ export async function findInstalledSkillPaths(skillId: string): Promise<string[]
   const installed: string[] = [];
   for (const baseDir of SKILL_INSTALL_DIRS) {
     const candidate = path.join(baseDir, skillId);
-    if (await pathExists(candidate)) {
+    if (await pathEntryExists(candidate)) {
       installed.push(candidate);
     }
   }
@@ -100,9 +100,7 @@ export async function removeInstalledSkills(
     try {
       for (const baseDir of SKILL_INSTALL_DIRS) {
         const target = path.join(baseDir, skillId);
-        if (await pathExists(target)) {
-          await removePath(target);
-        }
+        await removePath(target);
       }
       log(`skills remove ok: ${skillId}`);
     } catch {

@@ -15,13 +15,15 @@ export function buildSkillsWorkspaceRows(
     return [{ key: "skills-empty", line: "No skills loaded", active: true }];
   }
 
+  const safeCursor = Math.min(Math.max(cursor, 0), skills.length - 1);
+
   return skills.map((skill, index) => {
     const selected = selectedSkills.has(skill.id);
     const installed = skill.installedPaths.length > 0 ? "installed" : "not-installed";
     return {
       key: skill.id,
       line: `${selected ? "[x]" : "[ ]"} ${skill.id} (${installed})`,
-      active: index === cursor,
+      active: index === safeCursor,
     };
   });
 }

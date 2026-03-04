@@ -41,9 +41,16 @@ export async function refreshSkillsCommand(deps: SkillsStateDeps): Promise<void>
   const catalog = state.items;
   deps.setSkillsModuleError(null);
   deps.setSkills(catalog);
-  deps.setSelectedSkills(
-    new Set(catalog.filter((skill) => skill.installedPaths.length === 0).map((skill) => skill.id)),
-  );
+  deps.setSelectedSkills((previous) => {
+    const knownIds = new Set(catalog.map((skill) => skill.id));
+    const preserved = new Set([...previous].filter((skillId) => knownIds.has(skillId)));
+    if (previous.size > 0) {
+      return preserved;
+    }
+    return new Set(
+      catalog.filter((skill) => skill.installedPaths.length === 0).map((skill) => skill.id),
+    );
+  });
 }
 
 export async function installSelectedSkillsCommand(
@@ -70,6 +77,35 @@ export async function installSelectedSkillsCommand(
 
   await deps.runTask("install selected skills", async () => {
     await installSkills(selected, deps.appendLog);
+    await deps.refreshSkills();
+  });
+}
+
+export async function installCurrentSkillCommand(
+  deps: ModuleRuntimeContext & {
+    skills: SkillRecipe[];
+    skillsModuleError: string | null;
+    currentIndex: number;
+    refreshSkills: () => Promise<void>;
+  },
+): Promise<void> {
+  if (deps.skillsModuleError) {
+    deps.appendLog(deps.skillsModuleError);
+    return;
+  }
+
+  const current = deps.skills[deps.currentIndex];
+  if (!current) {
+    deps.appendLog("nenhuma skill selecionada");
+    return;
+  }
+
+  if (!deps.requestLightConfirm("skills-install-current", `install ${current.id}`)) {
+    return;
+  }
+
+  await deps.runTask(`install ${current.id}`, async () => {
+    await installSkills([current], deps.appendLog);
     await deps.refreshSkills();
   });
 }
@@ -102,6 +138,38 @@ export function queueRemoveSelectedSkillsCommand(
         selected.map((item) => item.id),
         deps.appendLog,
       );
+      await deps.refreshSkills();
+    },
+  });
+  deps.setConfirmFocusConfirm(false);
+}
+
+export function queueRemoveCurrentSkillCommand(
+  deps: ModuleRuntimeContext &
+    SkillsConfirmDeps & {
+      skills: SkillRecipe[];
+      skillsModuleError: string | null;
+      currentIndex: number;
+      refreshSkills: () => Promise<void>;
+    },
+): void {
+  if (deps.skillsModuleError) {
+    deps.appendLog(deps.skillsModuleError);
+    return;
+  }
+
+  const current = deps.skills[deps.currentIndex];
+  if (!current) {
+    deps.appendLog("nenhuma skill selecionada");
+    return;
+  }
+
+  deps.clearLightConfirm();
+  deps.setConfirmAction({
+    title: `remove local skill ${current.id}`,
+    details: [current.id],
+    run: async () => {
+      await removeInstalledSkills([current.id], deps.appendLog);
       await deps.refreshSkills();
     },
   });

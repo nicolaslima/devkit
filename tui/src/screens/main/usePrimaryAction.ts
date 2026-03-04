@@ -26,7 +26,9 @@ interface PrimaryActionHandlers {
   refreshTools: () => Promise<void>;
   refreshCodex: () => Promise<void>;
   installSelectedSkillsAction: () => Promise<void>;
+  installCurrentSkillAction: () => Promise<void>;
   removeSelectedSkillsAction: () => Promise<void>;
+  removeCurrentSkillAction: () => Promise<void>;
   toggleCurrentSkillSelection: () => void;
   toggleCurrentToolSelection: () => void;
   toggleCurrentMcpAction: () => Promise<void>;
