@@ -1,6 +1,6 @@
 import { TextAttributes } from "@opentui/core";
-import { theme } from "../theme";
 import type { ScreenRow } from "../screens/tabs/types";
+import { theme } from "../theme";
 
 interface WorkspacePanelProps {
   title: string;

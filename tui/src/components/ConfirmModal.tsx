@@ -10,6 +10,13 @@ interface ConfirmModalProps {
 }
 
 export function ConfirmModal({ title, details, confirmFocused, width, height }: ConfirmModalProps) {
+  const detailCountByValue = new Map<string, number>();
+  const detailRows = details.slice(0, 6).map((detail) => {
+    const occurrence = (detailCountByValue.get(detail) ?? 0) + 1;
+    detailCountByValue.set(detail, occurrence);
+    return { detail, key: `${detail}#${occurrence}` };
+  });
+
   return (
     <box
       position="absolute"
@@ -27,8 +34,8 @@ export function ConfirmModal({ title, details, confirmFocused, width, height }: 
         Confirmacao necessaria (destrutiva)
       </text>
       <text fg={theme.fgDefault}>{title}</text>
-      {details.slice(0, 6).map((detail, index) => (
-        <text key={`${detail}-${index}`} fg={theme.fgMuted}>
+      {detailRows.map(({ detail, key }) => (
+        <text key={key} fg={theme.fgMuted}>
           {`- ${detail}`}
         </text>
       ))}

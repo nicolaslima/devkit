@@ -1,10 +1,10 @@
 export { resolveToolCleanupPreview, resolveToolsCleanupPreview } from "./tools/cleanup";
-export { getToolStatuses, getToolStatusesState } from "./tools/status";
 export {
-  installOrUpdateTools,
-  uninstallTools,
-  installOrUpdateTool,
-  uninstallTool,
-  configureToolWithCodex,
   configureToolsWithCodex,
+  configureToolWithCodex,
+  installOrUpdateTool,
+  installOrUpdateTools,
+  uninstallTool,
+  uninstallTools,
 } from "./tools/operations";
+export { getToolStatuses, getToolStatusesState } from "./tools/status";

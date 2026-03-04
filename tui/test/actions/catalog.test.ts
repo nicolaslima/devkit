@@ -1,11 +1,11 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
 import path from "node:path";
-import * as fsAdapter from "../../src/adapters/fs";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   loadMcpCatalogState,
   loadSkillsCatalogState,
   loadToolsCatalogState,
 } from "../../src/adapters/catalog";
+import * as fsAdapter from "../../src/adapters/fs";
 
 describe("catalog adapter", () => {
   afterEach(() => {
@@ -14,10 +14,7 @@ describe("catalog adapter", () => {
   });
 
   it("loads valid states from project catalogs", async () => {
-    vi.stubGlobal(
-      "fetch",
-      vi.fn().mockRejectedValue(new Error("offline test fallback")),
-    );
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("offline test fallback")));
     const skills = await loadSkillsCatalogState();
     const tools = await loadToolsCatalogState();
     const mcp = await loadMcpCatalogState();
@@ -33,14 +30,9 @@ describe("catalog adapter", () => {
   });
 
   it("returns disabled state with short generic error on invalid contract", async () => {
-    vi.stubGlobal(
-      "fetch",
-      vi.fn().mockRejectedValue(new Error("offline test fallback")),
-    );
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("offline test fallback")));
     vi.spyOn(fsAdapter, "pathExists").mockResolvedValue(true);
-    vi.spyOn(fsAdapter, "readTextFile").mockResolvedValue(
-      "[[skill]]\nname = \"broken\"\n",
-    );
+    vi.spyOn(fsAdapter, "readTextFile").mockResolvedValue('[[skill]]\nname = "broken"\n');
 
     const state = await loadSkillsCatalogState();
 
@@ -49,10 +41,7 @@ describe("catalog adapter", () => {
   });
 
   it("disables only the affected module when zod contract validation fails", async () => {
-    vi.stubGlobal(
-      "fetch",
-      vi.fn().mockRejectedValue(new Error("offline test fallback")),
-    );
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("offline test fallback")));
     vi.spyOn(fsAdapter, "pathExists").mockResolvedValue(true);
     vi.spyOn(fsAdapter, "readTextFile").mockImplementation(async (target) => {
       if (target.toString().endsWith("tools.toml")) {
@@ -81,10 +70,7 @@ describe("catalog adapter", () => {
   });
 
   it("prefers project-root catalogs over cwd catalogs", async () => {
-    vi.stubGlobal(
-      "fetch",
-      vi.fn().mockRejectedValue(new Error("offline test fallback")),
-    );
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("offline test fallback")));
     const cwd = process.cwd();
     const rootSkills = path.resolve(cwd, "..", "skills.toml");
     const localSkills = path.resolve(cwd, "skills.toml");
@@ -107,5 +93,4 @@ describe("catalog adapter", () => {
     expect(readSpy).toHaveBeenCalledWith(rootSkills);
     expect(pathExistsSpy).toHaveBeenCalledWith(rootSkills);
   });
-
 });

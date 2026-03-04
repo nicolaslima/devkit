@@ -9,7 +9,12 @@ interface NavigationPanelProps {
   moduleWarnings: Partial<Record<AppTab, string | null>>;
 }
 
-export function NavigationPanel({ tabOrder, tabLabels, activeTab, moduleWarnings }: NavigationPanelProps) {
+export function NavigationPanel({
+  tabOrder,
+  tabLabels,
+  activeTab,
+  moduleWarnings,
+}: NavigationPanelProps) {
   return (
     <box
       width="22%"

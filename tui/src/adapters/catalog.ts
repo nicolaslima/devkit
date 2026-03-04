@@ -4,14 +4,18 @@ import {
   CATALOG_TOOLS_CANDIDATES,
   SHORT_GENERIC_CATALOG_ERROR,
 } from "../constants";
-import { parseMcpCatalogRows, parseSkillsCatalogRows, parseToolsCatalogRows } from "../platform/catalog/schema";
-import { readCatalogRemoteFirst, type CatalogRemoteFile } from "./catalogRemote";
+import {
+  parseMcpCatalogRows,
+  parseSkillsCatalogRows,
+  parseToolsCatalogRows,
+} from "../platform/catalog/schema";
 import type {
   McpTemplateItem,
   ModuleCatalogState,
   SkillCatalogItem,
   ToolCatalogItem,
 } from "../types";
+import { type CatalogRemoteFile, readCatalogRemoteFirst } from "./catalogRemote";
 
 type TomlRow = Record<string, unknown>;
 

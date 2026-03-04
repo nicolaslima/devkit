@@ -8,6 +8,13 @@ interface InspectorPanelProps {
 }
 
 export function InspectorPanel({ title = "Inspector", lines, maxRows }: InspectorPanelProps) {
+  const lineCountByValue = new Map<string, number>();
+  const keyedLines = lines.slice(0, Math.max(maxRows, 8)).map((line) => {
+    const occurrence = (lineCountByValue.get(line) ?? 0) + 1;
+    lineCountByValue.set(line, occurrence);
+    return { line, key: `${line}#${occurrence}` };
+  });
+
   return (
     <box
       width="30%"
@@ -19,14 +26,10 @@ export function InspectorPanel({ title = "Inspector", lines, maxRows }: Inspecto
       flexDirection="column"
       overflow="hidden"
     >
-      {lines.slice(0, Math.max(maxRows, 8)).map((line, index) => {
+      {keyedLines.map(({ line, key }) => {
         if (line.startsWith("## ")) {
           return (
-            <text
-              key={`${index}-${line}`}
-              fg={theme.accentSecondary}
-              attributes={TextAttributes.BOLD}
-            >
+            <text key={key} fg={theme.accentSecondary} attributes={TextAttributes.BOLD}>
               {line.slice(3)}
             </text>
           );
@@ -34,14 +37,14 @@ export function InspectorPanel({ title = "Inspector", lines, maxRows }: Inspecto
 
         if (line.startsWith("- ")) {
           return (
-            <text key={`${index}-${line}`} fg={theme.fgDefault}>
+            <text key={key} fg={theme.fgDefault}>
               {line}
             </text>
           );
         }
 
         return (
-          <text key={`${index}-${line}`} fg={theme.fgMuted}>
+          <text key={key} fg={theme.fgMuted}>
             {line}
           </text>
         );

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import * as fsAdapter from "../../src/adapters/fs";
 import { readCatalogRemoteFirst } from "../../src/adapters/catalogRemote";
+import * as fsAdapter from "../../src/adapters/fs";
 
 describe("catalog remote cache", () => {
   afterEach(() => {
@@ -35,10 +35,7 @@ describe("catalog remote cache", () => {
     vi.spyOn(fsAdapter, "readTextFile").mockResolvedValue(
       '[[skill]]\nname = "cached"\ninstall = "echo cached"\n',
     );
-    vi.stubGlobal(
-      "fetch",
-      vi.fn().mockRejectedValue(new Error("network down")),
-    );
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("network down")));
 
     const content = await readCatalogRemoteFirst("skills.toml", []);
 
@@ -47,10 +44,7 @@ describe("catalog remote cache", () => {
 
   it("throws when remote fetch fails and no cache/local fallback exists", async () => {
     vi.spyOn(fsAdapter, "pathExists").mockResolvedValue(false);
-    vi.stubGlobal(
-      "fetch",
-      vi.fn().mockRejectedValue(new Error("network down")),
-    );
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("network down")));
 
     await expect(readCatalogRemoteFirst("skills.toml", [])).rejects.toThrow();
   });

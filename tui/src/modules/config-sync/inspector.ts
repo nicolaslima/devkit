@@ -1,7 +1,10 @@
 import type { ConfigDiffItem } from "../../types";
 import { buildInspectorSections } from "../runtime/view";
 
-export function buildConfigSyncInspectorLines(configDiff: ConfigDiffItem[], cursor: number): string[] {
+export function buildConfigSyncInspectorLines(
+  configDiff: ConfigDiffItem[],
+  cursor: number,
+): string[] {
   const item = configDiff[cursor];
   if (!item) {
     return buildInspectorSections([

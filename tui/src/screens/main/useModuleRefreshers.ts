@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { refreshConfigDiffCommand } from "../../modules/config-sync/commands";
 import { type DistTags, refreshCodexCommand } from "../../modules/codex/commands";
+import { refreshConfigDiffCommand } from "../../modules/config-sync/commands";
 import { refreshMcpCommand } from "../../modules/mcp/commands";
 import { refreshSkillsCommand } from "../../modules/skills/commands";
 import { refreshToolsCommand } from "../../modules/tools/commands";
@@ -76,10 +76,7 @@ export function useModuleRefreshers(deps: UseModuleRefreshersDeps): UseModuleRef
   }, [refreshConfigDiff, refreshMcp, refreshSkills, refreshTools]);
 
   const refreshAll = useCallback(async () => {
-    await Promise.allSettled([
-      refreshCatalog(),
-      refreshCodex(),
-    ]);
+    await Promise.allSettled([refreshCatalog(), refreshCodex()]);
   }, [refreshCatalog, refreshCodex]);
 
   return {

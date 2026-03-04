@@ -1,12 +1,6 @@
 import path from "node:path";
+import { appendTextFile, ensureDir, getFileSize, pathExists, renamePath } from "../adapters/fs";
 import { AUDIT_LOG_PATH, MAX_AUDIT_BYTES, MAX_AUDIT_FILES, STATE_DIR } from "../constants";
-import {
-  appendTextFile,
-  ensureDir,
-  getFileSize,
-  pathExists,
-  renamePath,
-} from "../adapters/fs";
 
 function nowIso(): string {
   return new Date().toISOString();

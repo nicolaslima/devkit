@@ -90,7 +90,10 @@ export async function installSkills(recipes: SkillRecipe[], log: Logger): Promis
   };
 }
 
-export async function removeInstalledSkills(skillIds: string[], log: Logger): Promise<BatchSummary> {
+export async function removeInstalledSkills(
+  skillIds: string[],
+  log: Logger,
+): Promise<BatchSummary> {
   const failedNames: string[] = [];
 
   for (const skillId of skillIds) {

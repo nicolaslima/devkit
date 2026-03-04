@@ -1,3 +1,4 @@
+import { pathExists, readTextFile } from "../../adapters/fs";
 import {
   CATALOG_DEFAULT_GIST_ID,
   CATALOG_DEFAULT_OWNER,
@@ -5,7 +6,6 @@ import {
   CATALOG_OWNER_ENV_KEYS,
   CATALOG_SOURCE_CANDIDATES,
 } from "../../constants";
-import { pathExists, readTextFile } from "../../adapters/fs";
 
 export interface CatalogSource {
   owner: string;

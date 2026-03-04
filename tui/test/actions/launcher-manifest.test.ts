@@ -1,5 +1,5 @@
-import path from "node:path";
 import { readdir, readFile } from "node:fs/promises";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 interface ManifestContract {
@@ -55,7 +55,9 @@ describe("launcher/manifest contract", () => {
       await expect(readFile(target, "utf8")).resolves.toBeTypeOf("string");
     }
 
-    await expect(readFile(path.join(process.cwd(), manifest.entry), "utf8")).resolves.toBeTypeOf("string");
+    await expect(readFile(path.join(process.cwd(), manifest.entry), "utf8")).resolves.toBeTypeOf(
+      "string",
+    );
   });
 
   it("manifest tracks all runtime source files under src", async () => {
@@ -68,7 +70,11 @@ describe("launcher/manifest contract", () => {
   });
 
   it("keeps a single launcher source file", async () => {
-    await expect(readFile(path.join(process.cwd(), "launcher.sh"), "utf8")).resolves.toBeTypeOf("string");
-    await expect(readFile(path.join(process.cwd(), "runtime", "launcher.sh"), "utf8")).rejects.toThrow();
+    await expect(readFile(path.join(process.cwd(), "launcher.sh"), "utf8")).resolves.toBeTypeOf(
+      "string",
+    );
+    await expect(
+      readFile(path.join(process.cwd(), "runtime", "launcher.sh"), "utf8"),
+    ).rejects.toThrow();
   });
 });

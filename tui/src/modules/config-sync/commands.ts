@@ -1,4 +1,8 @@
-import { applyConfigDiffItem, buildConfigDiff, resolveReferenceConfigPath } from "../../actions/configSync";
+import {
+  applyConfigDiffItem,
+  buildConfigDiff,
+  resolveReferenceConfigPath,
+} from "../../actions/configSync";
 import { LOCAL_CODEX_CONFIG, REFERENCE_CONFIG_CANDIDATES } from "../../constants";
 import type { ConfigDiffItem } from "../../types";
 import type { ModuleRuntimeContext } from "../runtime/types";
@@ -13,11 +17,13 @@ interface ConfigSyncApplyDeps {
   currentIndex: number;
   refreshConfigDiff: () => Promise<void>;
   refreshMcp: () => Promise<void>;
-  setConfirmAction: (value: {
-    title: string;
-    details: string[];
-    run: () => Promise<void>;
-  } | null) => void;
+  setConfirmAction: (
+    value: {
+      title: string;
+      details: string[];
+      run: () => Promise<void>;
+    } | null,
+  ) => void;
   setConfirmFocusConfirm: (value: boolean) => void;
 }
 

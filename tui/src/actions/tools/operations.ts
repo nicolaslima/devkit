@@ -1,11 +1,11 @@
 import { loadToolsCatalogStrict } from "../../adapters/catalog";
 import { removePath } from "../../adapters/fs";
 import { LOCAL_CODEX_CONFIG } from "../../constants";
-import { removeMcpBlock, toggleMcpServer } from "../mcp";
 import type { BatchSummary, ToolName } from "../../types";
+import { removeMcpBlock, toggleMcpServer } from "../mcp";
 import { resolveToolCleanupPreview } from "./cleanup";
-import { runToolCommand, summaryToken, toToolCatalogMap, uniqueToolQueue } from "./shared";
 import type { Logger } from "./shared";
+import { runToolCommand, summaryToken, toToolCatalogMap, uniqueToolQueue } from "./shared";
 
 export async function installOrUpdateTools(
   tools: ToolName[],
@@ -130,7 +130,10 @@ export async function configureToolWithCodex(tool: ToolName, log: Logger): Promi
   log(`tool ${tool}: codex configured`);
 }
 
-export async function configureToolsWithCodex(tools: ToolName[], log: Logger): Promise<BatchSummary> {
+export async function configureToolsWithCodex(
+  tools: ToolName[],
+  log: Logger,
+): Promise<BatchSummary> {
   const queue = uniqueToolQueue(tools);
   const failedNames: string[] = [];
 

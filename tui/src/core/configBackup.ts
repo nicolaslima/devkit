@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { CODEX_BACKUP_KEEP } from "../constants";
 import { pathExists } from "../adapters/fs";
+import { CODEX_BACKUP_KEEP } from "../constants";
 
 function timestampNow(): string {
   const now = new Date();
@@ -37,7 +37,10 @@ export async function createCodexConfigBackup(configPath: string): Promise<strin
   return backupPath;
 }
 
-export async function pruneCodexConfigBackups(configPath: string, keep = CODEX_BACKUP_KEEP): Promise<void> {
+export async function pruneCodexConfigBackups(
+  configPath: string,
+  keep = CODEX_BACKUP_KEEP,
+): Promise<void> {
   const backups = await listBackups(configPath);
   if (backups.length <= keep) {
     return;

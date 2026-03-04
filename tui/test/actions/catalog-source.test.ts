@@ -1,9 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import * as fsAdapter from "../../src/adapters/fs";
-import {
-  CATALOG_DEFAULT_GIST_ID,
-  CATALOG_DEFAULT_OWNER,
-} from "../../src/constants";
+import { CATALOG_DEFAULT_GIST_ID, CATALOG_DEFAULT_OWNER } from "../../src/constants";
 import { resolveCatalogSource } from "../../src/platform/catalog/source";
 
 const ENV_KEYS = [

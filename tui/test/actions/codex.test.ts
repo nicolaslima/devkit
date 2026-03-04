@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import * as shellAdapter from "../../src/adapters/shell";
 import { resolveCodexDistTags, updateCodex } from "../../src/actions/codex";
+import * as shellAdapter from "../../src/adapters/shell";
 
 describe("codex actions", () => {
   afterEach(() => {
@@ -29,7 +29,10 @@ describe("codex actions", () => {
       stderr: "",
     });
 
-    const command = await updateCodex("codespace", "stable", { latest: "1.0.0", alpha: "1.0.1-alpha" });
+    const command = await updateCodex("codespace", "stable", {
+      latest: "1.0.0",
+      alpha: "1.0.1-alpha",
+    });
 
     expect(command).toContain("devcontainer-features/main/src/codex/install.sh");
     expect(spy).toHaveBeenCalled();

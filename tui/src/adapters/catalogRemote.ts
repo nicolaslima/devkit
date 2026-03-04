@@ -1,7 +1,7 @@
 import path from "node:path";
 import { CATALOG_CACHE_DIR } from "../constants";
-import { ensureDir, pathExists, readTextFile, writeTextFile } from "./fs";
 import { resolveCatalogSource } from "../platform/catalog/source";
+import { ensureDir, pathExists, readTextFile, writeTextFile } from "./fs";
 
 export type CatalogRemoteFile = "skills.toml" | "tools.toml" | "mcp.toml";
 

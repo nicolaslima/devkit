@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import * as shellAdapter from "../../src/adapters/shell";
-import * as fsAdapter from "../../src/adapters/fs";
 import { installSkills, removeInstalledSkills } from "../../src/actions/skills";
+import * as fsAdapter from "../../src/adapters/fs";
+import * as shellAdapter from "../../src/adapters/shell";
 import type { SkillRecipe } from "../../src/types";
 
 const recipes: SkillRecipe[] = [

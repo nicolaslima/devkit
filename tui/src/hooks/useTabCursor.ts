@@ -17,10 +17,7 @@ function clamp(value: number, min: number, max: number): number {
 export function useTabCursor(initial: Record<AppTab, number>) {
   const [cursorByTab, setCursorByTab] = useState<Record<AppTab, number>>(initial);
 
-  const getCursor = useCallback(
-    (tab: AppTab) => cursorByTab[tab] ?? 0,
-    [cursorByTab],
-  );
+  const getCursor = useCallback((tab: AppTab) => cursorByTab[tab] ?? 0, [cursorByTab]);
 
   const setCursor = useCallback((tab: AppTab, value: number) => {
     setCursorByTab((previous) => ({

@@ -30,7 +30,9 @@ interface MainKeyboardDeps {
   installSelectedSkillsAction: () => Promise<void>;
   removeSelectedSkillsAction: () => Promise<void>;
   toggleCurrentToolSelection: () => void;
-  executeSelectedToolAction: (mode: "install" | "update" | "configure" | "uninstall") => Promise<void>;
+  executeSelectedToolAction: (
+    mode: "install" | "update" | "configure" | "uninstall",
+  ) => Promise<void>;
   toggleCurrentMcpAction: () => Promise<void>;
   applyCurrentDiffAction: () => Promise<void>;
   activatePrimaryAction: () => Promise<void>;

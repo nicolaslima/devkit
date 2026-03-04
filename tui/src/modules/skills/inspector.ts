@@ -30,11 +30,18 @@ export function buildSkillsInspectorLines(
     },
     {
       title: "Command",
-      lines: [current.command, "Space/Enter toggle selection", "i install selected", "r remove selected local"],
+      lines: [
+        current.command,
+        "Space/Enter toggle selection",
+        "i install selected",
+        "r remove selected local",
+      ],
     },
     {
       title: "Impact",
-      lines: [current.installedPaths.length > 0 ? "Already installed locally" : "Not installed locally"],
+      lines: [
+        current.installedPaths.length > 0 ? "Already installed locally" : "Not installed locally",
+      ],
     },
   ]);
 }

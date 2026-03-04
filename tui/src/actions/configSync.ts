@@ -187,7 +187,9 @@ function findSectionInsertionIndex(lines: string[], section: string): number {
     return firstSection >= 0 ? firstSection : lines.length;
   }
 
-  const sectionPattern = new RegExp(`^\\s*\\[${section.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")}\\]\\s*$`);
+  const sectionPattern = new RegExp(
+    `^\\s*\\[${section.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")}\\]\\s*$`,
+  );
   const start = lines.findIndex((line) => sectionPattern.test(line));
   if (start === -1) {
     return lines.length;
@@ -201,7 +203,10 @@ function findSectionInsertionIndex(lines: string[], section: string): number {
   return lines.length;
 }
 
-export async function applyConfigDiffItem(localConfigPath: string, item: ConfigDiffItem): Promise<void> {
+export async function applyConfigDiffItem(
+  localConfigPath: string,
+  item: ConfigDiffItem,
+): Promise<void> {
   if (item.kind === "key-only-local") {
     return;
   }
@@ -228,7 +233,11 @@ export async function applyConfigDiffItem(localConfigPath: string, item: ConfigD
     throw new Error("desabilitada com aviso");
   }
 
-  if (typeof item.localLineIndex === "number" && item.localLineIndex >= 0 && item.localLineIndex < lines.length) {
+  if (
+    typeof item.localLineIndex === "number" &&
+    item.localLineIndex >= 0 &&
+    item.localLineIndex < lines.length
+  ) {
     lines[item.localLineIndex] = replacement;
     await createCodexConfigBackup(localConfigPath);
     await writeTextFile(localConfigPath, lines.join("\n"));

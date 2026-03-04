@@ -1,6 +1,22 @@
 import { useMemo } from "react";
-import { getAuditPath } from "../../core/audit";
 import { APP_NAME } from "../../constants";
+import { getAuditPath } from "../../core/audit";
+import type { DistTags } from "../../modules/codex/commands";
+import { buildCodexInspectorLines } from "../../modules/codex/inspector";
+import { buildCodexWorkspaceRows } from "../../modules/codex/workspace";
+import { buildConfigSyncInspectorLines } from "../../modules/config-sync/inspector";
+import { buildConfigSyncWorkspaceRows } from "../../modules/config-sync/workspace";
+import { buildHomeInspectorLines } from "../../modules/home/inspector";
+import { buildHomeWorkspaceRows } from "../../modules/home/workspace";
+import { buildMcpInspectorLines } from "../../modules/mcp/inspector";
+import { buildMcpWorkspaceRows } from "../../modules/mcp/workspace";
+import { buildRunPlanInspectorLines } from "../../modules/run-plan/inspector";
+import { buildRunPlanWorkspaceRows } from "../../modules/run-plan/workspace";
+import type { ScreenRow } from "../../modules/runtime/view";
+import { buildSkillsInspectorLines } from "../../modules/skills/inspector";
+import { buildSkillsWorkspaceRows } from "../../modules/skills/workspace";
+import { buildToolsInspectorLines } from "../../modules/tools/inspector";
+import { buildToolsWorkspaceRows } from "../../modules/tools/workspace";
 import type {
   AppTab,
   CodexChannel,
@@ -11,22 +27,6 @@ import type {
   ToolName,
   ToolStatus,
 } from "../../types";
-import type { DistTags } from "../../modules/codex/commands";
-import { buildHomeWorkspaceRows } from "../../modules/home/workspace";
-import { buildHomeInspectorLines } from "../../modules/home/inspector";
-import { buildSkillsWorkspaceRows } from "../../modules/skills/workspace";
-import { buildSkillsInspectorLines } from "../../modules/skills/inspector";
-import { buildCodexWorkspaceRows } from "../../modules/codex/workspace";
-import { buildCodexInspectorLines } from "../../modules/codex/inspector";
-import { buildMcpWorkspaceRows } from "../../modules/mcp/workspace";
-import { buildMcpInspectorLines } from "../../modules/mcp/inspector";
-import { buildConfigSyncWorkspaceRows } from "../../modules/config-sync/workspace";
-import { buildConfigSyncInspectorLines } from "../../modules/config-sync/inspector";
-import { buildToolsWorkspaceRows } from "../../modules/tools/workspace";
-import { buildToolsInspectorLines } from "../../modules/tools/inspector";
-import { buildRunPlanWorkspaceRows } from "../../modules/run-plan/workspace";
-import { buildRunPlanInspectorLines } from "../../modules/run-plan/inspector";
-import type { ScreenRow } from "../../modules/runtime/view";
 
 interface UseMainViewModelInput {
   activeTab: AppTab;
@@ -71,9 +71,17 @@ export function useMainViewModel(input: UseMainViewModelInput): MainViewModelSta
           input.skillsModuleError,
         );
       case "codex":
-        return buildCodexWorkspaceRows(input.codexTarget, input.codexChannel, input.getCursor("codex"));
+        return buildCodexWorkspaceRows(
+          input.codexTarget,
+          input.codexChannel,
+          input.getCursor("codex"),
+        );
       case "mcp":
-        return buildMcpWorkspaceRows(input.mcpServers, input.getCursor("mcp"), input.mcpModuleError);
+        return buildMcpWorkspaceRows(
+          input.mcpServers,
+          input.getCursor("mcp"),
+          input.mcpModuleError,
+        );
       case "configSync":
         return buildConfigSyncWorkspaceRows(input.configDiff, input.getCursor("configSync"));
       case "tools":
@@ -123,7 +131,11 @@ export function useMainViewModel(input: UseMainViewModelInput): MainViewModelSta
           referenceConfigPath: input.referenceConfigPath,
         });
       case "skills":
-        return buildSkillsInspectorLines(input.skills, input.getCursor("skills"), input.skillsModuleError);
+        return buildSkillsInspectorLines(
+          input.skills,
+          input.getCursor("skills"),
+          input.skillsModuleError,
+        );
       case "codex":
         return buildCodexInspectorLines({
           codexTarget: input.codexTarget,
@@ -133,7 +145,11 @@ export function useMainViewModel(input: UseMainViewModelInput): MainViewModelSta
           alpha: input.distTags.alpha,
         });
       case "mcp":
-        return buildMcpInspectorLines(input.mcpServers, input.getCursor("mcp"), input.mcpModuleError);
+        return buildMcpInspectorLines(
+          input.mcpServers,
+          input.getCursor("mcp"),
+          input.mcpModuleError,
+        );
       case "configSync":
         return buildConfigSyncInspectorLines(input.configDiff, input.getCursor("configSync"));
       case "tools":

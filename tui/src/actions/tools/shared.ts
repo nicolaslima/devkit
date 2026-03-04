@@ -1,5 +1,5 @@
-import type { ToolCatalogItem, ToolName } from "../../types";
 import { runCommand } from "../../adapters/shell";
+import type { ToolCatalogItem, ToolName } from "../../types";
 
 export type Logger = (line: string) => void;
 

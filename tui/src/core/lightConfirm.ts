@@ -3,7 +3,10 @@ export interface LightConfirmResult {
   nextToken: string | null;
 }
 
-export function resolveLightConfirm(currentToken: string | null, actionToken: string): LightConfirmResult {
+export function resolveLightConfirm(
+  currentToken: string | null,
+  actionToken: string,
+): LightConfirmResult {
   if (currentToken === actionToken) {
     return {
       confirmed: true,

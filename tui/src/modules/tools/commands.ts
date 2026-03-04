@@ -22,11 +22,13 @@ interface ToolsExecutionDeps {
   selectedTools: Set<ToolName>;
   refreshTools: () => Promise<void>;
   refreshMcp: () => Promise<void>;
-  setConfirmAction: (value: {
-    title: string;
-    details: string[];
-    run: () => Promise<void>;
-  } | null) => void;
+  setConfirmAction: (
+    value: {
+      title: string;
+      details: string[];
+      run: () => Promise<void>;
+    } | null,
+  ) => void;
   setConfirmFocusConfirm: (value: boolean) => void;
 }
 
@@ -127,7 +129,9 @@ export async function executeSelectedToolsCommand(
 export async function installOpenSpecAndConfigureCommand(
   deps: ModuleRuntimeContext & OpenSpecDeps,
 ): Promise<void> {
-  if (!deps.requestLightConfirm("home-openspec-install-configure", "openspec install + configure")) {
+  if (
+    !deps.requestLightConfirm("home-openspec-install-configure", "openspec install + configure")
+  ) {
     return;
   }
 

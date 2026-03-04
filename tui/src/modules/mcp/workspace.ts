@@ -11,7 +11,9 @@ export function buildMcpWorkspaceRows(
   }
 
   if (mcpServers.length === 0) {
-    return [{ key: "mcp-empty", line: "No MCP blocks found in ~/.codex/config.toml", active: true }];
+    return [
+      { key: "mcp-empty", line: "No MCP blocks found in ~/.codex/config.toml", active: true },
+    ];
   }
 
   return mcpServers.map((server, index) => ({

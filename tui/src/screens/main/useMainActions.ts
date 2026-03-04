@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { applyCurrentConfigDiffCommand } from "../../modules/config-sync/commands";
 import { type DistTags, updateCodexCommand } from "../../modules/codex/commands";
+import { applyCurrentConfigDiffCommand } from "../../modules/config-sync/commands";
 import { toggleCurrentMcpCommand } from "../../modules/mcp/commands";
 import type { ModuleRuntimeContext } from "../../modules/runtime/types";
 import {
@@ -18,10 +18,10 @@ import type {
   ToolName,
   ToolStatus,
 } from "../../types";
-import { useModuleRefreshers } from "./useModuleRefreshers";
-import { useSelectionState } from "./useSelectionState";
-import { usePrimaryAction } from "./usePrimaryAction";
 import type { ConfirmAction } from "./types";
+import { useModuleRefreshers } from "./useModuleRefreshers";
+import { usePrimaryAction } from "./usePrimaryAction";
+import { useSelectionState } from "./useSelectionState";
 
 interface UseMainActionsDeps extends ModuleRuntimeContext {
   homeActions: string[];
@@ -91,22 +91,29 @@ export function useMainActions(deps: UseMainActionsDeps): UseMainActionsState {
     runTask: deps.runTask,
   } satisfies ModuleRuntimeContext;
 
-  const { refreshCatalog, refreshSkills, refreshCodex, refreshMcp, refreshConfigDiff, refreshTools, refreshAll } =
-    useModuleRefreshers({
-      distTags: deps.distTags,
-      setDistTags: deps.setDistTags,
-      setCodexVersion: deps.setCodexVersion,
-      setSkills: deps.setSkills,
-      setSkillsModuleError: deps.setSkillsModuleError,
-      setSelectedSkills: deps.setSelectedSkills,
-      setMcpServers: deps.setMcpServers,
-      setMcpModuleError: deps.setMcpModuleError,
-      setReferenceConfigPath: deps.setReferenceConfigPath,
-      setConfigDiff: deps.setConfigDiff,
-      setToolStatuses: deps.setToolStatuses,
-      setToolsModuleError: deps.setToolsModuleError,
-      setSelectedTools: deps.setSelectedTools,
-    });
+  const {
+    refreshCatalog,
+    refreshSkills,
+    refreshCodex,
+    refreshMcp,
+    refreshConfigDiff,
+    refreshTools,
+    refreshAll,
+  } = useModuleRefreshers({
+    distTags: deps.distTags,
+    setDistTags: deps.setDistTags,
+    setCodexVersion: deps.setCodexVersion,
+    setSkills: deps.setSkills,
+    setSkillsModuleError: deps.setSkillsModuleError,
+    setSelectedSkills: deps.setSelectedSkills,
+    setMcpServers: deps.setMcpServers,
+    setMcpModuleError: deps.setMcpModuleError,
+    setReferenceConfigPath: deps.setReferenceConfigPath,
+    setConfigDiff: deps.setConfigDiff,
+    setToolStatuses: deps.setToolStatuses,
+    setToolsModuleError: deps.setToolsModuleError,
+    setSelectedTools: deps.setSelectedTools,
+  });
 
   const { getActiveTabLength, toggleCurrentSkillSelection, toggleCurrentToolSelection } =
     useSelectionState({

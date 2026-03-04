@@ -1,7 +1,7 @@
-import path from "node:path";
+import { readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
+import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { listMcpServers, toggleMcpServer } from "../../src/actions/mcp";
 import { buildTmpName } from "../helpers/tmp";
 
@@ -56,10 +56,7 @@ describe("mcp actions", () => {
 
   it("toggleMcpServer adds missing block from template and toggles in same action", async () => {
     const configPath = await writeConfig(
-      [
-        "[mcp_servers.github]",
-        'url = "https://example.com/mcp"',
-      ].join("\n"),
+      ["[mcp_servers.github]", 'url = "https://example.com/mcp"'].join("\n"),
     );
 
     await toggleMcpServer(configPath, "axon", true);
@@ -89,12 +86,7 @@ describe("mcp actions", () => {
   });
 
   it("keeps only latest 3 backups after repeated toggles", async () => {
-    const configPath = await writeConfig(
-      [
-        "; [mcp_servers.axon]",
-        '; command = "axon"',
-      ].join("\n"),
-    );
+    const configPath = await writeConfig(["; [mcp_servers.axon]", '; command = "axon"'].join("\n"));
 
     for (let i = 0; i < 6; i += 1) {
       await toggleMcpServer(configPath, "axon", i % 2 === 0);
@@ -109,7 +101,7 @@ describe("mcp actions", () => {
   });
 
   it("returns short generic error when template does not exist", async () => {
-    const configPath = await writeConfig("[mcp_servers.github]\nurl = \"x\"\n");
+    const configPath = await writeConfig('[mcp_servers.github]\nurl = "x"\n');
 
     await expect(toggleMcpServer(configPath, "missing", true)).rejects.toThrow(
       "desabilitada com aviso",

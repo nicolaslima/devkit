@@ -1,11 +1,4 @@
-export type AppTab =
-  | "home"
-  | "skills"
-  | "codex"
-  | "mcp"
-  | "configSync"
-  | "tools"
-  | "runPlan";
+export type AppTab = "home" | "skills" | "codex" | "mcp" | "configSync" | "tools" | "runPlan";
 
 export type CodexTarget = "local" | "codespace";
 export type CodexChannel = "stable" | "alpha";
@@ -72,11 +65,7 @@ export interface McpServerInfo {
   headerLine: string;
 }
 
-export type ConfigDiffKind =
-  | "key-missing"
-  | "key-different"
-  | "section-missing"
-  | "key-only-local";
+export type ConfigDiffKind = "key-missing" | "key-different" | "section-missing" | "key-only-local";
 
 export interface ConfigDiffItem {
   id: string;

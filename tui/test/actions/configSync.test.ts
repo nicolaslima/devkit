@@ -1,9 +1,9 @@
-import path from "node:path";
+import { readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
+import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { readFile, readdir, rm, writeFile } from "node:fs/promises";
-import type { ConfigDiffItem } from "../../src/types";
 import { applyConfigDiffItem, buildConfigDiff } from "../../src/actions/configSync";
+import type { ConfigDiffItem } from "../../src/types";
 import { buildTmpName } from "../helpers/tmp";
 
 const createdFiles: string[] = [];
@@ -44,19 +44,11 @@ describe("configSync actions", () => {
   it("buildConfigDiff reports missing, different and only-local", async () => {
     const referencePath = await writeToml(
       "config-ref",
-      [
-        "[core]",
-        'alpha = "1"',
-        'beta = "2"',
-      ].join("\n"),
+      ["[core]", 'alpha = "1"', 'beta = "2"'].join("\n"),
     );
     const localPath = await writeToml(
       "config-local",
-      [
-        "[core]",
-        'alpha = "9"',
-        'gamma = "local-only"',
-      ].join("\n"),
+      ["[core]", 'alpha = "9"', 'gamma = "local-only"'].join("\n"),
     );
 
     const diffs = await buildConfigDiff(referencePath, localPath);
@@ -72,21 +64,11 @@ describe("configSync actions", () => {
   it("applyConfigDiffItem updates existing key line only", async () => {
     const referencePath = await writeToml(
       "config-ref",
-      [
-        "[core]",
-        'alpha = "1"',
-        'beta = "2"',
-        "# keep this comment",
-      ].join("\n"),
+      ["[core]", 'alpha = "1"', 'beta = "2"', "# keep this comment"].join("\n"),
     );
     const localPath = await writeToml(
       "config-local",
-      [
-        "[core]",
-        'alpha = "1"',
-        'beta = "9"',
-        "# keep this comment",
-      ].join("\n"),
+      ["[core]", 'alpha = "1"', 'beta = "9"', "# keep this comment"].join("\n"),
     );
 
     const diffs = await buildConfigDiff(referencePath, localPath);
@@ -117,10 +99,7 @@ describe("configSync actions", () => {
       path: "[extra]",
       status: "missing",
       referenceValue: "[extra]\nenabled = true",
-      referenceBlock: [
-        "[extra]",
-        "enabled = true",
-      ],
+      referenceBlock: ["[extra]", "enabled = true"],
       section: "extra",
     };
 
@@ -131,13 +110,7 @@ describe("configSync actions", () => {
   });
 
   it("creates backups and keeps latest 3 when applying multiple updates", async () => {
-    const localPath = await writeToml(
-      "config-local",
-      [
-        "[core]",
-        'alpha = "0"',
-      ].join("\n"),
-    );
+    const localPath = await writeToml("config-local", ["[core]", 'alpha = "0"'].join("\n"));
 
     for (let i = 0; i < 6; i += 1) {
       await applyConfigDiffItem(localPath, {

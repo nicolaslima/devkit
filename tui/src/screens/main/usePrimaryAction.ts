@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { installOpenSpecAndConfigureCommand } from "../../modules/tools/commands";
 import { runHomePrimaryActionCommand } from "../../modules/home/commands";
 import { runPlanPrimaryActionCommand } from "../../modules/run-plan/commands";
 import type { ModuleRuntimeContext } from "../../modules/runtime/types";
+import { installOpenSpecAndConfigureCommand } from "../../modules/tools/commands";
 import type { AppTab, CodexChannel, CodexTarget } from "../../types";
 
 interface PrimaryActionDeps extends ModuleRuntimeContext {

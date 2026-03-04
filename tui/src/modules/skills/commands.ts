@@ -1,6 +1,6 @@
 import { installSkills, loadSkillCatalogState, removeInstalledSkills } from "../../actions/skills";
-import type { ModuleRuntimeContext } from "../runtime/types";
 import type { SkillRecipe } from "../../types";
+import type { ModuleRuntimeContext } from "../runtime/types";
 
 interface SkillsSelectionDeps {
   skills: SkillRecipe[];
@@ -14,11 +14,13 @@ interface SkillsStateDeps {
 }
 
 interface SkillsConfirmDeps {
-  setConfirmAction: (value: {
-    title: string;
-    details: string[];
-    run: () => Promise<void>;
-  } | null) => void;
+  setConfirmAction: (
+    value: {
+      title: string;
+      details: string[];
+      run: () => Promise<void>;
+    } | null,
+  ) => void;
   setConfirmFocusConfirm: (value: boolean) => void;
 }
 

@@ -162,7 +162,9 @@ describe("vertical slice contract", () => {
       const absolutePath = path.resolve(process.cwd(), relativePath);
       const content = await readFile(absolutePath, "utf8");
       expect(content.length, `File should not be empty: ${relativePath}`).toBeGreaterThan(0);
-      expect(content, `File should export at least one symbol: ${relativePath}`).toMatch(/export\s+/);
+      expect(content, `File should export at least one symbol: ${relativePath}`).toMatch(
+        /export\s+/,
+      );
     }
   });
 });

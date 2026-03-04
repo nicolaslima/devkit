@@ -1,5 +1,12 @@
 import { useCallback } from "react";
-import type { AppTab, ConfigDiffItem, McpServerInfo, SkillRecipe, ToolName, ToolStatus } from "../../types";
+import type {
+  AppTab,
+  ConfigDiffItem,
+  McpServerInfo,
+  SkillRecipe,
+  ToolName,
+  ToolStatus,
+} from "../../types";
 
 interface UseSelectionStateDeps {
   activeTab: AppTab;

@@ -1,10 +1,18 @@
 import { TextAttributes } from "@opentui/core";
 import { useRenderer, useTerminalDimensions } from "@opentui/react";
 import { useCallback, useEffect, useState } from "react";
-import { type DistTags } from "../actions/codex";
+import type { DistTags } from "../actions/codex";
+import { CommandBar } from "../components/CommandBar";
+import { ConfirmModal } from "../components/ConfirmModal";
+import { HelpModal } from "../components/HelpModal";
+import { InspectorPanel } from "../components/InspectorPanel";
+import { NavigationPanel } from "../components/NavigationPanel";
+import { TopStatusBar } from "../components/TopStatusBar";
+import { WorkspacePanel } from "../components/WorkspacePanel";
+import { APP_NAME, LOCAL_CODEX_CONFIG, REFERENCE_CONFIG_CANDIDATES } from "../constants";
 import { appendAudit } from "../core/audit";
 import { buildLightConfirmMessage, resolveLightConfirm } from "../core/lightConfirm";
-import { APP_NAME, LOCAL_CODEX_CONFIG, REFERENCE_CONFIG_CANDIDATES } from "../constants";
+import { useTabCursor } from "../hooks/useTabCursor";
 import { theme } from "../theme";
 import type {
   AppTab,
@@ -16,18 +24,10 @@ import type {
   ToolName,
   ToolStatus,
 } from "../types";
-import { useTabCursor } from "../hooks/useTabCursor";
-import { NavigationPanel } from "../components/NavigationPanel";
-import { WorkspacePanel } from "../components/WorkspacePanel";
-import { InspectorPanel } from "../components/InspectorPanel";
-import { ConfirmModal } from "../components/ConfirmModal";
-import { TopStatusBar } from "../components/TopStatusBar";
-import { CommandBar } from "../components/CommandBar";
-import { HelpModal } from "../components/HelpModal";
 import { buildCommandBarText } from "./main/commandHints";
 import { humanError, nowTime } from "./main/errorFormat";
 import { HOME_ACTIONS } from "./main/homeActions";
-import { TAB_LABELS, TAB_ORDER, PROFILE_LABEL, PROJECT_LABEL } from "./main/tabConfig";
+import { PROFILE_LABEL, PROJECT_LABEL, TAB_LABELS, TAB_ORDER } from "./main/tabConfig";
 import type { ConfirmAction } from "./main/types";
 import { useMainActions } from "./main/useMainActions";
 import { useMainKeyboard } from "./main/useMainKeyboard";
@@ -253,7 +253,13 @@ export function MainScreen() {
 
   if (width < 80 || height < 24) {
     return (
-      <box width="100%" height="100%" justifyContent="center" alignItems="center" backgroundColor={theme.bgBase}>
+      <box
+        width="100%"
+        height="100%"
+        justifyContent="center"
+        alignItems="center"
+        backgroundColor={theme.bgBase}
+      >
         <box border borderColor={theme.warning} padding={1} width="80%">
           <text fg={theme.warning} attributes={TextAttributes.BOLD}>
             Terminal too small
@@ -282,9 +288,17 @@ export function MainScreen() {
           moduleWarnings={moduleWarnings}
         />
 
-        <WorkspacePanel title={`${TAB_LABELS[activeTab]} Workspace`} rows={workspaceRows} maxRows={height - 11} />
+        <WorkspacePanel
+          title={`${TAB_LABELS[activeTab]} Workspace`}
+          rows={workspaceRows}
+          maxRows={height - 11}
+        />
 
-        <InspectorPanel title={`${TAB_LABELS[activeTab]} Inspector`} lines={inspectorLines} maxRows={height - 11} />
+        <InspectorPanel
+          title={`${TAB_LABELS[activeTab]} Inspector`}
+          lines={inspectorLines}
+          maxRows={height - 11}
+        />
       </box>
 
       <CommandBar hint={buildCommandBarText(activeTab, lightConfirmToken !== null)} />

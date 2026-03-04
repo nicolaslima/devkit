@@ -1,9 +1,6 @@
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { mkdir, rm, writeFile } from "node:fs/promises";
-import * as catalogAdapter from "../../src/adapters/catalog";
-import * as shellAdapter from "../../src/adapters/shell";
-import * as fsAdapter from "../../src/adapters/fs";
 import * as mcpActions from "../../src/actions/mcp";
 import {
   installOrUpdateTool,
@@ -13,6 +10,9 @@ import {
   uninstallTool,
   uninstallTools,
 } from "../../src/actions/tools";
+import * as catalogAdapter from "../../src/adapters/catalog";
+import * as fsAdapter from "../../src/adapters/fs";
+import * as shellAdapter from "../../src/adapters/shell";
 import { buildTmpName } from "../helpers/tmp";
 
 const cleanupPaths: string[] = [];
@@ -24,7 +24,9 @@ async function createFile(target: string): Promise<void> {
 
 afterEach(async () => {
   vi.restoreAllMocks();
-  await Promise.all(cleanupPaths.splice(0).map((target) => rm(target, { recursive: true, force: true })));
+  await Promise.all(
+    cleanupPaths.splice(0).map((target) => rm(target, { recursive: true, force: true })),
+  );
 });
 
 describe("tools actions", () => {
@@ -146,7 +148,11 @@ describe("tools actions", () => {
       .mockResolvedValueOnce({ command: "install-reme", code: 1, stdout: "", stderr: "err" });
 
     const logs: string[] = [];
-    const result = await installOrUpdateTools(["axon", "reme"], (line) => logs.push(line), "install");
+    const result = await installOrUpdateTools(
+      ["axon", "reme"],
+      (line) => logs.push(line),
+      "install",
+    );
 
     expect(result.token).toBe("1/2");
     expect(result.failedNames).toEqual(["reme"]);

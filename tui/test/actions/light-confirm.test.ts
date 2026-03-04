@@ -25,6 +25,8 @@ describe("light confirmation", () => {
   });
 
   it("emits short message for UI prompt", () => {
-    expect(buildLightConfirmMessage("refresh all")).toBe("Enter novamente para confirmar: refresh all");
+    expect(buildLightConfirmMessage("refresh all")).toBe(
+      "Enter novamente para confirmar: refresh all",
+    );
   });
 });

@@ -1,8 +1,8 @@
 import {
+  type DistTags,
   getInstalledCodexVersion,
   resolveCodexDistTags,
   updateCodex,
-  type DistTags,
 } from "../../actions/codex";
 import type { CodexChannel, CodexTarget } from "../../types";
 import type { ModuleRuntimeContext } from "../runtime/types";
@@ -36,7 +36,12 @@ export async function updateCodexCommand(
     return;
   }
 
-  if (!deps.requestLightConfirm(`codex-update-${target}-${channel}`, `codex update ${target} ${channel}`)) {
+  if (
+    !deps.requestLightConfirm(
+      `codex-update-${target}-${channel}`,
+      `codex update ${target} ${channel}`,
+    )
+  ) {
     return;
   }
 
