@@ -35,8 +35,11 @@ Esta pagina define controles de teclado e semantica de abas.
 | Aba | Atalho | Comportamento |
 |---|---|---|
 | Skills | `Space` | Alternar skill selecionada |
+| Skills | `Enter` | Alternar skill selecionada |
 | Skills | `i` | Instalar skills selecionadas |
 | Skills | `r` | Remover skills locais selecionadas |
+| Skills | `Shift+I` | Instalar skill da linha atual (independente do batch) |
+| Skills | `Shift+D` | Remover skill da linha atual (independente do batch, destrutivo) |
 | Codex | `←/→` | Alterar target/channel conforme linha |
 | MCP | `t` | Alternar bloco MCP selecionado |
 | Config Sync | `a` | Aplicar item de diff selecionado |
@@ -52,6 +55,14 @@ Esta pagina define controles de teclado e semantica de abas.
 |---|---|
 | Nao destrutiva | confirmacao leve por token com Enter duplo |
 | Destrutiva | modal com foco inicial em `Cancelar` |
+
+## Politica de refresh
+
+- Sem polling automatico em background.
+- Refresh ocorre:
+  - no bootstrap inicial (uma vez por execucao),
+  - apos acoes que alteram estado,
+  - quando o usuario aciona refresh manual.
 
 ## Restricoes de terminal
 

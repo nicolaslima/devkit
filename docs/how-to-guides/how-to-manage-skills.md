@@ -17,7 +17,7 @@ bun run start
 
 1. Pressione `2` para abrir a aba **Skills**.
 2. Use `j/k` ou setas para mover.
-3. Pressione `Space` (ou `Enter`) para alternar selecao.
+3. Pressione `Space` (ou `Enter`) para alternar selecao batch.
 
 Linhas selecionadas exibem `[x]`.
 
@@ -44,12 +44,24 @@ Comportamento:
 - Execucao em best-effort.
 - Resumo final no formato `N/T`.
 
+## Operar skill individual (sem depender do `[x]`)
+
+Para agir somente na linha atual, sem usar o batch selecionado:
+
+1. Mova o cursor para a skill desejada.
+2. Use um dos atalhos:
+   - `Shift+I`: instala apenas a skill atual;
+   - `Shift+D`: remove apenas a skill atual (com confirmacao destrutiva).
+
+Isso permite manter uma pre-selecao batch e ainda executar excecoes por item.
+
 ## Atualizar estado de skills
 
 - Pressione `1` para **Home**.
 - Execute `Refresh catalog`.
 
 Isso recarrega catalogo e status de instalacao.
+Nao existe refresh periodico automatico em background.
 
 ## Solucao de problemas
 

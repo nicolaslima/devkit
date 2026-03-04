@@ -52,6 +52,7 @@ O runtime da TUI e `remote-first`:
 - atualiza cache local quando remoto responde,
 - em falha de rede usa cache local (modo degradado),
 - sem cache valido, o modulo afetado fica `desabilitada com aviso`.
+- nao existe polling de refresh em background; refresh acontece no bootstrap, apos acoes e via refresh manual.
 
 ## Comandos de qualidade
 
@@ -96,6 +97,17 @@ Trigger:
 
 Saida:
 - publica os binarios `devkit-*` e checksums `.sha256` na release do GitHub.
+
+## Publicar catalogo no Gist
+
+Atualizar o catalogo compartilhado (sanitizado, sem `node_modules`):
+
+```bash
+bash deploy-gist.sh
+```
+
+Pre-requisito:
+- `GH_PAT_TOKEN` definido no ambiente.
 
 ## Documentacao
 
