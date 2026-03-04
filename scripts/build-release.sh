@@ -20,6 +20,12 @@ fi
 if [[ "$host_arch_raw" == "amd64" ]]; then
   host_arch="x64"
 fi
+if [[ "$host_arch_raw" == "aarch64" ]]; then
+  host_arch="arm64"
+fi
+if [[ "$host_arch_raw" == "arm64" ]]; then
+  host_arch="arm64"
+fi
 host_target="bun-${host_os}-${host_arch}"
 
 if [[ ! -f "$MANIFEST_PATH" ]]; then
