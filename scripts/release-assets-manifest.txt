@@ -1,0 +1,5 @@
+# asset-name target
+devkit-darwin-arm64 bun-darwin-arm64
+devkit-darwin-amd64 bun-darwin-x64
+devkit-linux-arm64 bun-linux-arm64
+devkit-linux-amd64 bun-linux-x64

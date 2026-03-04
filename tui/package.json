@@ -10,6 +10,7 @@
     "test": "vitest run",
     "lint": "biome lint .",
     "format": "biome format --write .",
+    "build:release": "bash ../scripts/build-release.sh",
     "check:code": "biome check .",
     "check:code:write": "biome check --write ."
   },
@@ -24,5 +25,11 @@
     "@opentui/react": "^0.1.84",
     "react": "^19.2.4",
     "zod": "^4.3.6"
+  },
+  "optionalDependencies": {
+    "@opentui/core-darwin-arm64": "0.1.84",
+    "@opentui/core-darwin-x64": "0.1.84",
+    "@opentui/core-linux-arm64": "0.1.84",
+    "@opentui/core-linux-x64": "0.1.84"
   }
 }
