@@ -10,6 +10,7 @@ function uniqueCandidates(values: string[]): string[] {
 
 export const APP_NAME = "devkit";
 export const STATE_DIR = path.join(home, ".local", "state", APP_NAME);
+export const CATALOG_CACHE_DIR = path.join(STATE_DIR, "catalog");
 export const AUDIT_LOG_PATH = path.join(STATE_DIR, "audit.log");
 export const MAX_AUDIT_BYTES = 1024 * 1024;
 export const MAX_AUDIT_FILES = 5;
