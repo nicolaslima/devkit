@@ -37,3 +37,247 @@ install = "npx skills add https://github.com/antfu/skills --skill vitest -g -y"
 [[skill]]
 name = "opensrc"
 install = "npx skills add https://github.com/third774/dotfiles --skill opensrc -g -y"
+
+[[skill]]
+name = "skills-discovery"
+install = "npx skills-installer install @Kamalnrf/claude-plugins/skills-discovery --client codex"
+
+[[skill]]
+name = "writing-documentation-with-diataxis"
+install = "npx skills add https://github.com/sammcj/agentic-coding --skill writing-documentation-with-diataxis -g -y"
+
+[[skill]]
+name = "supabase"
+install = "npx skills add supabase/agent-skills -g -y"
+
+[[skill]]
+name = "supabase-auth"
+install = "npx skills add https://github.com/nice-wolf-studio/claude-code-supabase-skills --skill supabase-auth -g -y"
+
+[[skill]]
+name = "supabase-postgres-best-practices"
+install = "npx skills add https://github.com/supabase/agent-skills --skill supabase-postgres-best-practices -g -y"
+
+[[skill]]
+name = "spec-kit"
+install = "npx skills-installer install @Microck/ordinary-claude-skills/spec-kit-skill --client codex"
+
+[[skill]]
+name = "spec-kit-ref-alternative"
+install = "npx skills-installer install @feiskyer/codex-settings/spec-kit-skill --client codex"
+
+[[skill]]
+name = "refactor"
+install = "npx skills add https://github.com/github/awesome-copilot --skill refactor -g -y"
+
+[[skill]]
+name = "context-map"
+install = "npx skills add https://github.com/github/awesome-copilot --skill context-map -g -y"
+
+[[skill]]
+name = "refactor-method-complexity-reduce"
+install = "npx skills add https://github.com/github/awesome-copilot --skill refactor-method-complexity-reduce -g -y"
+
+[[skill]]
+name = "folder-structure-blueprint-generator"
+install = "npx skills add https://github.com/github/awesome-copilot --skill folder-structure-blueprint-generator -g -y"
+
+[[skill]]
+name = "create-github-action-workflow-specification"
+install = "npx skills add https://github.com/github/awesome-copilot --skill create-github-action-workflow-specification -g -y"
+
+[[skill]]
+name = "github-actions-expert"
+install = "npx skills add https://github.com/cin12211/orca-q --skill github-actions-expert -g -y"
+
+[[skill]]
+name = "plantuml-ascii"
+install = "npx skills add https://github.com/github/awesome-copilot --skill plantuml-ascii -g -y"
+
+[[skill]]
+name = "gh-cli"
+install = "npx skills add https://github.com/github/awesome-copilot --skill gh-cli -g -y"
+
+[[skill]]
+name = "mermaid-diagrams"
+install = "npx skills add https://github.com/softaworks/agent-toolkit --skill mermaid-diagrams -g -y"
+
+[[skill]]
+name = "backend-to-frontend-handoff-docs"
+install = "npx skills add https://github.com/softaworks/agent-toolkit --skill backend-to-frontend-handoff-docs -g -y"
+
+[[skill]]
+name = "qa-test-planner"
+install = "npx skills add https://github.com/softaworks/agent-toolkit --skill qa-test-planner -g -y"
+
+[[skill]]
+name = "session-handoff"
+install = "npx skills add https://github.com/softaworks/agent-toolkit --skill session-handoff -g -y"
+
+[[skill]]
+name = "dependency-updater"
+install = "npx skills add https://github.com/softaworks/agent-toolkit --skill dependency-updater -g -y"
+
+[[skill]]
+name = "naming-analyzer"
+install = "npx skills add https://github.com/softaworks/agent-toolkit --skill naming-analyzer -g -y"
+
+[[skill]]
+name = "lesson-learned"
+install = "npx skills add https://github.com/softaworks/agent-toolkit --skill lesson-learned -g -y"
+
+[[skill]]
+name = "crafting-effective-readmes"
+install = "npx skills add https://github.com/softaworks/agent-toolkit --skill crafting-effective-readmes -g -y"
+
+[[skill]]
+name = "agent-md-refactor"
+install = "npx skills add https://github.com/softaworks/agent-toolkit --skill agent-md-refactor -g -y"
+
+[[skill]]
+name = "typescript-e2e-testing"
+install = "npx skills add https://github.com/bmad-labs/skills --skill typescript-e2e-testing -g -y"
+
+[[skill]]
+name = "breakdown-test"
+install = "npx skills add https://github.com/github/awesome-copilot --skill breakdown-test -g -y"
+
+[[skill]]
+name = "codebase-search"
+install = "npx skills add https://github.com/supercent-io/skills-template --skill codebase-search -g -y"
+
+[[skill]]
+name = "architecture-decision-records"
+install = "npx skills add https://github.com/wshobson/agents --skill architecture-decision-records -g -y"
+
+[[skill]]
+name = "openapi-spec-generation"
+install = "npx skills add https://github.com/wshobson/agents --skill openapi-spec-generation -g -y"
+
+[[skill]]
+name = "typescript-advanced-types"
+install = "npx skills add https://github.com/wshobson/agents --skill typescript-advanced-types -g -y"
+
+[[skill]]
+name = "data-storytelling"
+install = "npx skills add https://github.com/wshobson/agents --skill data-storytelling -g -y"
+
+[[skill]]
+name = "shellcheck-configuration"
+install = "npx skills add https://github.com/wshobson/agents --skill shellcheck-configuration -g -y"
+
+[[skill]]
+name = "shell"
+install = "npx skills add https://github.com/pproenca/dot-skills --skill shell -g -y"
+
+[[skill]]
+name = "github-actions-templates"
+install = "npx skills add https://github.com/wshobson/agents --skill github-actions-templates -g -y"
+
+[[skill]]
+name = "python-performance-optimization"
+install = "npx skills add https://github.com/wshobson/agents --skill python-performance-optimization -g -y"
+
+[[skill]]
+name = "prompt-engineering-patterns"
+install = "npx skills add https://github.com/wshobson/agents --skill prompt-engineering-patterns -g -y"
+
+[[skill]]
+name = "uv-package-manager"
+install = "npx skills add https://github.com/wshobson/agents --skill uv-package-manager -g -y"
+
+[[skill]]
+name = "architecture-diagrams"
+install = "npx skills add https://github.com/aj-geddes/useful-ai-prompts --skill architecture-diagrams -g -y"
+
+[[skill]]
+name = "diagramming-expert"
+install = "npx skills add https://github.com/erichowens/some_claude_skills --skill diagramming-expert -g -y"
+
+[[skill]]
+name = "ascii-diagram-boxflow"
+install = "npx skills add teachingai/full-stack-skills@ascii-diagram-boxflow -g -y"
+
+[[skill]]
+name = "deep-research"
+install = "npx skills add https://github.com/199-biotechnologies/claude-deep-research-skill --skill deep-research -g -y"
+
+[[skill]]
+name = "linear"
+install = "npx skills add https://github.com/openai/skills --skill linear -g -y"
+
+[[skill]]
+name = "codebase-exploration"
+install = "npx skills add https://github.com/404kidwiz/claude-supercode-skills --skill codebase-exploration -g -y"
+
+[[skill]]
+name = "typescript-expert"
+install = "npx skills add https://github.com/sickn33/antigravity-awesome-skills --skill typescript-expert -g -y"
+
+[[skill]]
+name = "frontend-design"
+install = "npx skills add https://github.com/anthropics/skills --skill frontend-design -g -y"
+
+[[skill]]
+name = "web-design-guidelines"
+install = "npx skills add https://github.com/vercel-labs/agent-skills --skill web-design-guidelines -g -y"
+
+[[skill]]
+name = "docker-expert"
+install = "npx skills add https://github.com/sickn33/antigravity-awesome-skills --skill docker-expert -g -y"
+
+[[skill]]
+name = "dockerfile-optimizer"
+install = "npx skills add https://github.com/patricio0312rev/skills --skill dockerfile-optimizer -g -y"
+
+[[skill]]
+name = "ts-google"
+install = "npx skills add https://github.com/pproenca/dot-skills --skill ts-google -g -y"
+
+[[skill]]
+name = "code-simplifier"
+install = "npx skills add https://github.com/pproenca/dot-skills --skill code-simplifier -g -y"
+
+[[skill]]
+name = "test-vitest"
+install = "npx skills add https://github.com/pproenca/dot-skills --skill test-vitest -g -y"
+
+[[skill]]
+name = "bash-pro"
+install = "npx skills add https://github.com/rmyndharis/antigravity-skills --skill bash-pro -g -y"
+
+[[skill]]
+name = "bashly"
+install = "npx skills add https://github.com/bashly-framework/bashly-ai-kit --skill bashly -g -y"
+
+[[skill]]
+name = "beautiful-mermaid"
+install = "npx skills add https://github.com/alexmikhalev/beautiful-mermaid --skill beautiful-mermaid -g -y"
+
+[[skill]]
+name = "openspec"
+install = "npx skills add https://github.com/itechmeat/llm-code --skill openspec -g -y"
+
+[[skill]]
+name = "theme-factory"
+install = "npx playbooks add skill anthropics/skills --skill theme-factory"
+
+[[skill]]
+name = "task-management"
+install = "npx playbooks add skill anthropics/knowledge-work-plugins --skill task-management"
+
+[[skill]]
+name = "ci-fix"
+install = "npx playbooks add skill jmerta/codex-skills --skill ci-fix"
+
+[[skill]]
+name = "create-cli"
+install = "npx playbooks add skill jmerta/codex-skills --skill create-cli"
+
+[[skill]]
+name = "typescript-best-practices"
+install = "npx skills add https://github.com/jwynia/agent-skills --skill typescript-best-practices -g -y"
+
+[[skill]]
+name = "solid"
+install = "npx skills add https://github.com/alicoder001/agent-skills --skill solid -g -y"
