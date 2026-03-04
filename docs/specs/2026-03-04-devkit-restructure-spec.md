@@ -1,5 +1,9 @@
 # DevKit - Especificacao de Reestruturacao (Draft)
 
+> **Status historico:** esta spec registra decisoes de reestruturacao da fase inicial.
+> O estado operacional atual deve ser consultado em `README.md` e nas paginas de `docs/reference/`.
+> Ultima release stable no momento desta nota: `v0.1.2`.
+
 ## 1. Contexto
 Este documento substitui a linha anterior onde a TUI e o catalogo eram distribuídos juntos via Gist.
 

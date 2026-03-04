@@ -30,26 +30,19 @@ bun run check:code
 - `../mcp.toml`
 - `../config-reference.toml`
 
-## Runtime remoto
+## Distribuicao e uso recomendado
 
-Arquivos esperados no gist:
-- `launcher.sh`
-- `manifest.json`
-- todos os arquivos listados em `manifest.json`
-
-Executar via `gh`:
+Para usuarios finais, o fluxo recomendado e instalar via `install.sh` e executar o binario local:
 
 ```bash
-gh gist view GIST_ID --raw --filename launcher.sh | \
-  PERSONAL_SKILLS_GIST_ID=GIST_ID PERSONAL_SKILLS_GIST_OWNER=OWNER bash
+curl -fsSL https://raw.githubusercontent.com/nicolaslima/devkit/main/install.sh | bash
+devkit
 ```
 
-Executar via `wget`:
+## Bootstrap remoto legado
 
-```bash
-wget -qO- https://gist.githubusercontent.com/OWNER/GIST_ID/raw/launcher.sh | \
-  PERSONAL_SKILLS_GIST_ID=GIST_ID PERSONAL_SKILLS_GIST_OWNER=OWNER bash
-```
+O bootstrap remoto via `launcher.sh` + `manifest.json` segue disponivel apenas para compatibilidade.
+Para uso normal, prefira sempre `install.sh` + release stable.
 
 ## Log de auditoria
 

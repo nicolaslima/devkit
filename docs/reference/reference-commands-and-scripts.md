@@ -64,4 +64,4 @@ Para contratos de comando e comportamento:
 - `tui/test/actions/codex.test.ts`
 - `tui/test/actions/tools.test.ts`
 - `tui/test/actions/skills.test.ts`
-- `tui/test/actions/launcher-manifest.test.ts`
+- `tui/test/actions/launcher-manifest.test.ts` (legado)

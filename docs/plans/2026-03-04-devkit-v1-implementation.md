@@ -1,5 +1,9 @@
 # DevKit v1 Implementation Plan
 
+> **Status historico:** este plano descreve a execucao inicial da v1.
+> Para operacao atual, consulte `README.md`, `install.sh` e `docs/reference/`.
+> Ultima release stable no momento desta nota: `v0.1.2`.
+
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
 **Goal:** Entregar a v1 do DevKit com distribuicao via GitHub Releases (stable), instalacao por `install.sh`, binario por plataforma (macOS/Linux amd64/arm64) e catalogo remoto em Gist com fallback por cache local.

@@ -1,36 +1,24 @@
-# Referencia: launcher e manifest
+# Referencia: launcher e manifest (legado)
 
-Esta pagina descreve o launcher remoto legado (execucao direta via gist da TUI).
-Fluxo recomendado atual para distribuicao: `install.sh` + GitHub Releases.
+Esta pagina documenta o bootstrap remoto antigo (via Gist com `launcher.sh` + `manifest.json`).
+Ele continua no repositorio por compatibilidade, mas nao e o fluxo recomendado de distribuicao.
 
-## Arquivo launcher
+Fluxo recomendado atual:
+- `install.sh` + GitHub Releases,
+- execucao local do binario `devkit`.
 
-- Caminho: `tui/launcher.sh`
-- Entradas obrigatorias:
-  - `PERSONAL_SKILLS_GIST_ID` (ou `GIST_ID`)
-  - `PERSONAL_SKILLS_GIST_OWNER` (ou `GIST_OWNER`)
-- Requisito de runtime: `bun` deve estar instalado.
+## Quando usar (somente excecao)
 
-## Fluxo do launcher
+Use launcher apenas se precisar depurar bootstrap remoto legado.
+Para uso normal, nao utilize esta rota.
 
-1. Resolver metadados do gist via flags/env.
-2. Montar URL base raw do gist.
-3. Baixar `manifest.json`.
-4. Validar campos obrigatorios do manifest.
-5. Para cada arquivo de `manifest.files`, resolver caminho remoto como `tui/<arquivo>` e aplicar URL-encode.
-6. Baixar os arquivos e reconstruir a arvore local no runtime temporario.
-7. Executar `bun run <manifest.entry>` no diretorio temporario de runtime.
+## Arquivos legados
 
-Diretorio temporario de runtime:
-- `${TMPDIR:-/tmp}/devkit-runtime`
+- Launcher: `tui/launcher.sh`
+- Manifest: `tui/manifest.json`
+- Schema: `tui/runtime/manifest.schema.json`
 
-## Contrato do manifest
-
-Arquivo: `tui/manifest.json`
-
-Observacao de deploy:
-- No Gist, o manifest tambem e publicado com alias `manifest.json` na raiz para bootstrap remoto.
-- Arquivos aninhados sao publicados com nome remoto URL-encoded por compatibilidade com a API de Gist.
+## Contrato minimo do manifest
 
 Chaves obrigatorias:
 - `app`
@@ -39,28 +27,25 @@ Chaves obrigatorias:
 - `files`
 - `min_bun`
 
-Fonte de schema:
-- `tui/runtime/manifest.schema.json`
+## Dependencias do launcher legado
 
-## Superficie de erro
+- `bun` instalado localmente.
+- Variaveis de identificacao do gist:
+  - `PERSONAL_SKILLS_GIST_ID` (ou `GIST_ID`)
+  - `PERSONAL_SKILLS_GIST_OWNER` (ou `GIST_OWNER`)
 
-O launcher retorna erros curtos e genericos em varios cenarios:
+## Runtime temporario legado
+
+- `${TMPDIR:-/tmp}/devkit-runtime`
+
+## Mensagem de erro curta
+
+Falhas de fetch, manifest invalido ou ambiente incompleto podem resultar em:
 - `desabilitada com aviso`
 
-Isso se aplica a ferramenta ausente, entrada malformada, manifest invalido ou falha de fetch.
-
-## Padroes de execucao suportados
-
-### Via GitHub CLI
+## Exemplo (legado)
 
 ```bash
 gh gist view GIST_ID --raw --filename launcher.sh | \
-  PERSONAL_SKILLS_GIST_ID=GIST_ID PERSONAL_SKILLS_GIST_OWNER=OWNER bash
-```
-
-### Via wget
-
-```bash
-wget -qO- https://gist.githubusercontent.com/OWNER/GIST_ID/raw/launcher.sh | \
   PERSONAL_SKILLS_GIST_ID=GIST_ID PERSONAL_SKILLS_GIST_OWNER=OWNER bash
 ```

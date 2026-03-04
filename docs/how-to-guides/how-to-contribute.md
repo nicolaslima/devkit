@@ -80,7 +80,6 @@ Nao misture tipos em uma mesma pagina.
 
 - [ ] Comportamento validado por testes
 - [ ] Sem regressao de fronteira de arquitetura
-- [ ] Consistencia de manifest/launcher preservada
 - [ ] Documentacao relevante atualizada
 - [ ] Links do README continuam validos
 
@@ -106,8 +105,8 @@ Para distribuir uma nova versao do `devkit` via `install.sh`:
 2. Crie e envie uma tag semver:
 
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+git tag vX.Y.Z
+git push origin vX.Y.Z
 ```
 
 3. Acompanhe o workflow `Release` no GitHub Actions.

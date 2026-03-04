@@ -52,17 +52,19 @@ Esta pagina resume decisoes centrais que moldaram o estado atual do projeto.
 - menos diagnostico imediato na UI,
 - diagnostico profundo vai para logs e checagens no codigo.
 
-## Decisao 5: launcher remoto online-only (V1)
+## Decisao 5: distribuicao primaria por install.sh + GitHub Releases
 
-**Decisao:** launcher sempre baixa o runtime mais recente do gist e executa em dir temporario.
+**Decisao:** o caminho oficial de uso e `install.sh` para instalar/atualizar o binario `devkit`.
+O launcher remoto fica apenas como legado de compatibilidade.
 
 **Por que:**
-- modelo operacional mais simples,
-- sem complexidade de invalidacao de cache na V1,
-- garante runtime publicado mais recente por padrao.
+- UX mais simples (um comando de instalacao + `devkit`),
+- elimina dependencia de parametros manuais de gist no uso diario,
+- reduz variabilidade de runtime ao usar assets versionados por release.
 
 **Trade-off:**
-- sem suporte offline para caminho remoto.
+- depende de release publicada para distribuir mudancas de runtime,
+- bootstrap remoto legado passa a ser caminho secundario.
 
 ## Decisao 6: execucao em lote best-effort
 

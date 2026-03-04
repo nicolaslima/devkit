@@ -13,7 +13,7 @@ Esta documentacao segue o framework Diataxis para que cada pagina atenda uma nec
 |---|---|---|
 | Sou novo e quero aprender | [Tutoriais](./tutorials/README.md) | Primeira execucao local e primeira instalacao/uso via install.sh |
 | Preciso concluir uma tarefa agora | [Guias praticos](./how-to-guides/README.md) | Skills, atualizacao de Codex, MCP, config sync, tools, contribuicao |
-| Preciso de fatos tecnicos exatos | [Referencia](./reference/README.md) | Atalhos, contratos de arquivos, launcher/manifest, comandos |
+| Preciso de fatos tecnicos exatos | [Referencia](./reference/README.md) | Atalhos, contratos de arquivos, paths de runtime, comandos e release |
 | Quero entender o por que das decisoes | [Explicacao](./explanation/README.md) | Arquitetura, modelo de seguranca e trade-offs |
 
 ## Links rapidos
