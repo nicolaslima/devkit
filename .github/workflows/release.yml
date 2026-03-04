@@ -17,6 +17,8 @@ jobs:
         include:
           - runner: macos-14
             asset: devkit-darwin-arm64
+          - runner: macos-15-intel
+            asset: devkit-darwin-amd64
           - runner: ubuntu-24.04-arm
             asset: devkit-linux-arm64
           - runner: ubuntu-24.04
@@ -68,6 +70,8 @@ jobs:
           files: |
             dist/release/devkit-darwin-arm64
             dist/release/devkit-darwin-arm64.sha256
+            dist/release/devkit-darwin-amd64
+            dist/release/devkit-darwin-amd64.sha256
             dist/release/devkit-linux-arm64
             dist/release/devkit-linux-arm64.sha256
             dist/release/devkit-linux-amd64
