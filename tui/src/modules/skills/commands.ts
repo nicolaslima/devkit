@@ -41,15 +41,9 @@ export async function refreshSkillsCommand(deps: SkillsStateDeps): Promise<void>
   const catalog = state.items;
   deps.setSkillsModuleError(null);
   deps.setSkills(catalog);
-  deps.setSelectedSkills((previous) => {
-    const next = new Set<string>();
-    for (const id of previous) {
-      if (catalog.some((item) => item.id === id)) {
-        next.add(id);
-      }
-    }
-    return next;
-  });
+  deps.setSelectedSkills(
+    new Set(catalog.filter((skill) => skill.installedPaths.length === 0).map((skill) => skill.id)),
+  );
 }
 
 export async function installSelectedSkillsCommand(

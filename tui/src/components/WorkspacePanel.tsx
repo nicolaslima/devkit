@@ -1,6 +1,7 @@
 import { TextAttributes } from "@opentui/core";
 import type { ScreenRow } from "../screens/tabs/types";
 import { theme } from "../theme";
+import { buildWorkspaceViewport } from "./workspaceViewport";
 
 interface WorkspacePanelProps {
   title: string;
@@ -9,6 +10,8 @@ interface WorkspacePanelProps {
 }
 
 export function WorkspacePanel({ title, rows, maxRows }: WorkspacePanelProps) {
+  const viewport = buildWorkspaceViewport(rows, maxRows);
+
   return (
     <box
       width="48%"
@@ -21,7 +24,7 @@ export function WorkspacePanel({ title, rows, maxRows }: WorkspacePanelProps) {
       flexDirection="column"
       overflow="hidden"
     >
-      {rows.slice(0, Math.max(maxRows, 8)).map((row) => (
+      {viewport.rows.map((row) => (
         <text
           key={row.key}
           fg={row.active ? theme.accentHover : theme.fgDefault}

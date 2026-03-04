@@ -47,6 +47,7 @@
     "src/components/NavigationPanel.tsx",
     "src/components/TopStatusBar.tsx",
     "src/components/WorkspacePanel.tsx",
+    "src/components/workspaceViewport.ts",
     "src/core/audit.ts",
     "src/core/configBackup.ts",
     "src/core/lightConfirm.ts",
