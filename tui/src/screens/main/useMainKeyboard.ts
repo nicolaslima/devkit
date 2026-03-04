@@ -104,7 +104,7 @@ export function useMainKeyboard({
         key.preventDefault();
         return;
       }
-      if (key.name === "enter") {
+      if ((CONFIRM_KEYS as readonly string[]).includes(key.name)) {
         key.preventDefault();
         if (!confirmFocusConfirm) {
           setConfirmAction(null);
