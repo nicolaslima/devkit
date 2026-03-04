@@ -1,0 +1,27 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+
+model = "gpt-5.3-codex"
+model_reasoning_effort = "medium"
+hide_agent_reasoning = false
+model_verbosity = "high"
+suppress_unstable_features_warning = true
+check_for_update_on_startup = true
+sandbox_mode = "workspace-write"
+web_search = "live"
+
+[sandbox_workspace_write]
+network_access = true
+writable_roots = ["/tmp", "/home/vscode/.npm", "/home/vscode/.cache", "/home/vscode/.local", "/home/vscode/.codex", "/home/vscode/.agents", "/home/vscode/.claude", "/home/vscode/.nvm", "/home/vscode/.docker"]
+
+[shell_environment_policy]
+inherit = "all"
+
+[history]
+persistence = "save-all"
+max_bytes = 104857600
+
+[tui]
+notifications = true
+notification_method = "osc9"
+theme = "monokai-extended"
+status_line = ["context-used", "context-remaining", "used-tokens", "total-input-tokens", "total-output-tokens", "git-branch", "current-dir", "model-with-reasoning"]

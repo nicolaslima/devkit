@@ -1,0 +1,26 @@
+[[mcp]]
+name = "axon"
+block = """
+[mcp_servers.axon]
+command = "axon"
+args = ["serve", "--watch"]
+startup_timeout_sec = 35.0
+"""
+
+[[mcp]]
+name = "reme"
+block = """
+[mcp_servers.reme]
+command = "reme"
+args = ["mcp"]
+startup_timeout_sec = 35.0
+"""
+
+[[mcp]]
+name = "openspec"
+block = """
+[mcp_servers.openspec]
+command = "npx"
+args = ["-y", "@fission-ai/openspec@latest", "mcp"]
+startup_timeout_sec = 35.0
+"""

@@ -1,0 +1,20 @@
+[[tool]]
+name = "openspec"
+install = "npm i -g @fission-ai/openspec@latest"
+update = "npm i -g @fission-ai/openspec@latest"
+uninstall = "npm rm -g @fission-ai/openspec"
+cleanup = ["~/.openspec", "~/.cache/openspec", "./.openspec", "**/.openspec/**"]
+
+[[tool]]
+name = "reme"
+install = "python3 -m pip install -U reme-ai"
+update = "python3 -m pip install -U reme-ai"
+uninstall = "python3 -m pip uninstall -y reme-ai"
+cleanup = ["~/.reme", "~/.cache/reme", "./.reme", "**/.reme/**"]
+
+[[tool]]
+name = "axon"
+install = "python3 -m pip install -U axoniq"
+update = "python3 -m pip install -U axoniq"
+uninstall = "python3 -m pip uninstall -y axoniq"
+cleanup = ["~/.axon", "~/.cache/axon", "~/.local/state/axon", "./.axon", "**/.axon/**"]

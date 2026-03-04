@@ -95,7 +95,7 @@ bash deploy-gist.sh
 
 Fluxo esperado:
 - autenticar via `GH_PAT_TOKEN` no `gh`;
-- criar/atualizar o Gist privado `personal-skills`;
+- criar/atualizar o Gist secreto `devkit-catalog`;
 - manter o mesmo id de Gist local em `.gist-id`.
 
 ## 10. Publicar release binaria

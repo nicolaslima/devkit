@@ -1,0 +1,39 @@
+[[skill]]
+name = "find-skills"
+install = "npx skills add https://github.com/vercel-labs/skills --skill find-skills -g -y"
+
+[[skill]]
+name = "feature-design-assistant"
+install = "npx skills add https://github.com/davila7/claude-code-templates --skill feature-design-assistant -g -y"
+
+[[skill]]
+name = "planning-with-files"
+install = "npx skills add https://github.com/othmanadi/planning-with-files --skill planning-with-files -g -y"
+
+[[skill]]
+name = "terminal-ui"
+install = "npx skills add https://github.com/pproenca/dot-skills --skill terminal-ui -g -y"
+
+[[skill]]
+name = "opentui"
+install = "npx skills add msmps/opentui-skill -g -y"
+
+[[skill]]
+name = "opentui-design"
+install = "npx skills add https://github.com/akiojin/skills --skill opentui-design -g -y"
+
+[[skill]]
+name = "opentui-projects"
+install = "npx skills add https://github.com/dimitrigilbert/ai-skills --skill opentui-projects -g -y"
+
+[[skill]]
+name = "tui-design"
+install = "npx skills add https://github.com/hyperb1iss/hyperskills --skill tui-design -g -y"
+
+[[skill]]
+name = "vitest"
+install = "npx skills add https://github.com/antfu/skills --skill vitest -g -y"
+
+[[skill]]
+name = "opensrc"
+install = "npx skills add https://github.com/third774/dotfiles --skill opensrc -g -y"

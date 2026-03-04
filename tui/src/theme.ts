@@ -1,0 +1,18 @@
+export const theme = {
+  bgBase: "#141413",
+  bgSurface: "#1b1a18",
+  bgOverlay: "#242320",
+  bgSoft: "#e8e6dc",
+  fgDefault: "#faf9f5",
+  fgMuted: "#b0aea5",
+  accent: "#d97757",
+  accentHover: "#e48b6f",
+  accentActive: "#be6547",
+  accentSubtle: "#2f221d",
+  accentSecondary: "#6a9bcc",
+  accentTertiary: "#788c5d",
+  success: "#788c5d",
+  warning: "#d97757",
+  error: "#d56d64",
+  info: "#6a9bcc",
+};
